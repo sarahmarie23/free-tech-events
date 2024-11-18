@@ -1,0 +1,22 @@
+#event-list li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #event-list img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  @media (min-width: 600px) {
+    #event-list li {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  
