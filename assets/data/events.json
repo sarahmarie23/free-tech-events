@@ -2,8 +2,8 @@
   {
       "title": "DevFest Seattle 2024",
       "date": "2024-11-16",
-      "start-time": "09:00",
-      "end-time": "15:00",
+      "start-time": "9:00 AM",
+      "end-time": "3:00 PM",
       "location": "UW Seattle",
       "hosts": [
           "GDG Seattle"
@@ -14,8 +14,8 @@
   {
       "title": "ODSC & Google Cloud AI Meetup",
       "date": "2024-12-04",
-      "start-time": "18:00",
-      "end-time": "20:00",
+      "start-time": "6:00 PM",
+      "end-time": "8:00 PM",
       "location": "The Cafe Event Space at SURF Incubator. 999 3rd Avenue, Suite 700, Seattle, WA 98104",
       "hosts": [
           "ODSC"

@@ -1,22 +1,131 @@
-#event-list li {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #event-list img {
-    max-width: 100%;
+#event-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.event-card {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  flex-direction: column; /* Default for mobile */
+  overflow: hidden;
+  justify-content: space-between;
+  gap: 15px;
+  max-width: 900px; /* Maximum width for cards */
+  width: 90%; /* Make cards span most of the screen */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+}
+.event-card p {
+  margin: 5px 0; 
+  padding: 0px; 
+  line-height: 1.4; 
+}
+
+/* Account for multiple hosts later*/
+.host-images {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 160px;
+  min-width: 160px;
+}
+
+.host-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.event-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  min-width: 300px;
+  gap: 5px; /* Space between text items */
+}
+
+.event-info strong {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.event-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.event-info a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Desktop-Specific Styles */
+@media (min-width: 768px) {
+  .event-card {
+    flex-direction: row; /* Switch to two columns */
+    align-items: center; /* Vertically align content */
+    min-height: 150px;
     height: auto;
   }
-  
-  @media (min-width: 600px) {
-    #event-list li {
-      flex-direction: row;
-      align-items: center;
-    }
+
+  .host-images {
+    flex-basis: 20%; /* Host column takes 20% of the card width */
+    justify-content: center; /* Align images to the left */
   }
+
+  .event-info {
+    flex-basis: 75%; /* Info column takes 75% of the card width */
+    overflow-wrap: break-word;
+  }
+}
+
+/* Center Align Mobile Content */
+@media (max-width: 768px) {
+  .event-card {
+    text-align: left;
+  }
+
+  .host-images {
+    justify-content: center;
+  }
+}
+/*
+#event-list li {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+  
+
+@media (min-width: 600px) {
+  #event-list li {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .event-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+  */
   
