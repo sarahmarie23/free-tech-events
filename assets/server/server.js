@@ -21,7 +21,7 @@ app.get('/events', (req, res) => {
 
 // Default route to serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Function to read events from events.json
@@ -36,7 +36,7 @@ app.post('/add-event', (req, res) => {
   const newEvent = req.body;
 
   // Read the existing events.json file
-  fs.readFile(path.join(__dirname,  '..', 'data', 'events.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '..', 'data', 'events.json'), 'utf8', (err, data) => {
     if (err) {
       return res.status(500).json({ error: 'Unable to read events file' });
     }
@@ -45,7 +45,7 @@ app.post('/add-event', (req, res) => {
     events.push(newEvent); // Add the new event to the array
 
     // Write the updated events back to the file
-    fs.writeFile(path.join(__dirname,  '..', 'data', 'events.json'), JSON.stringify(events, null, 2), (err) => {
+    fs.writeFile(path.join(__dirname, '..', 'data', 'events.json'), JSON.stringify(events, null, 2), (err) => {
       if (err) {
         return res.status(500).json({ error: 'Unable to save events file' });
       }
