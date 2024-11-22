@@ -1,10 +1,23 @@
 [
     {
         "name": "GDG Seattle",
-        "image": "/assets/images/gdg.png"
+        "image": "images/gdg.png"
     },
     {
         "name": "ODSC",
-        "image": "/assets/images/odsc.jpg"
+        "image": "images/odsc.jpg"
+    },
+    {
+        "name": "Seattle Code and Coffee",
+        "image": "images/code_and_coffee_square.png"
+    },
+    {
+        "name": "Open Source for AI",
+        "image": "images/not-found.png"
+    },
+    {
+        "name": "Seattle AI/ML/Data Developers Group",
+        "image": "images/aicamp.png"
     }
+
 ]

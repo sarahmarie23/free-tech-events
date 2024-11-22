@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input, select, button {
+      width: 100%;
+      margin-bottom: 16px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .time-select {
+      display: flex;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Event</h1>
+  <form id="add-event-form" action="http://localhost:3000/add-event" method="POST">
+    <label for="title">Event Title</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="date">Event Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="start-time">Start Time</label>
+    <div class="time-select">
+      <select id="start-hour" name="start-hour" required></select>
+      <select id="start-minute" name="start-minute" required></select>
+      <select id="start-ampm" name="start-ampm" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+
+    <label for="end-time">End Time</label>
+    <div class="time-select">
+      <select id="end-hour" name="end-hour" required></select>
+      <select id="end-minute" name="end-minute" required></select>
+      <select id="end-ampm" name="end-ampm" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="host">Host</label>
+    <select id="host" name="host" required></select>
+
+    <label for="food">Will there be food?</label>
+    <select id="food" name="food">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+
+    <label for="link">Event Link</label>
+    <input type="url" id="link" name="link" required>
+
+    <button type="submit">Add Event</button>
+  </form>
+
+  <script>
+    // Helper functions
+    function generateHoursOptions(defaultHour = 5) {
+      return Array.from({ length: 12 }, (_, i) => {
+        const hour = i + 1;
+        const isSelected = hour === defaultHour ? 'selected' : '';
+        return `<option value="${hour}" ${isSelected}>${hour}</option>`;
+      }).join("");
+    }
+
+    function generateMinutesOptions(defaultMinute = 0) {
+      return [0, 15, 30, 45].map((minute) => `<option value="${minute}">${minute.toString().padStart(2, "0")}</option>`).join("");
+    }
+
+    function generateAmPmOptions(defaultPeriod = "PM") {
+      return ["AM", "PM"]
+        .map((period) => {
+          const isSelected = period === defaultPeriod ? 'selected' : '';
+          return `<option value="${period}" ${isSelected}>${period}</option>`;
+        })
+        .join("");
+    }
+
+    function generateHostsOptions(hosts) {
+      return hosts.map((host) => `<option value="${host}">${host}</option>`).join("");
+    }
+
+    // Ensure the DOM is fully loaded before running the script
+    document.addEventListener("DOMContentLoaded", () => {
+      initializeForm();
+    });
+
+    // Define an async function to fetch hosts and initialize the form
+    async function initializeForm() {
+      // Default start and end times
+      const defaultStartHour = 5;
+      const defaultStartMinute = 0;
+      const defaultStartAmPm = "PM";
+
+      const defaultEndHour = 8;
+      const defaultEndMinute = 0;
+      const defaultEndAmPm = "PM";
+
+      try {
+        // Fetch hosts from hosts.json
+        const response = await fetch("assets/data/hosts.json");
+        const hosts = await response.json();
+        hosts.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Populate hosts dropdown
+        const hostSelect = document.getElementById("host");
+        hostSelect.innerHTML = hosts
+          .map((host) => `<option value="${host.name}">${host.name}</option>`)
+          .join("");
+      } catch (error) {
+        console.error("Failed to load hosts:", error);
+        const hostSelect = document.getElementById("host");
+        hostSelect.innerHTML = `<option value="" disabled>Unable to load hosts</option>`;
+      }
+
+      // Populate time dropdowns
+      document.getElementById("start-hour").innerHTML = generateHoursOptions(defaultStartHour);
+      document.getElementById("start-minute").innerHTML = generateMinutesOptions(defaultStartMinute);
+      document.getElementById("start-ampm").innerHTML = generateAmPmOptions(defaultStartAmPm);
+
+      document.getElementById("end-hour").innerHTML = generateHoursOptions(defaultEndHour);
+      document.getElementById("end-minute").innerHTML = generateMinutesOptions(defaultEndMinute);
+      document.getElementById("end-ampm").innerHTML = generateAmPmOptions(defaultEndAmPm);
+
+      const foodSelect = document.getElementById("food");
+      foodSelect.addEventListener('change', handleFoodChange);
+    }
+
+function handleFoodChange() {
+  const foodSelect = document.getElementById("food");
+  const foodChoice = foodSelect.value;
+  if (foodChoice === "Yes") {
+    alert("Great! There will be food at the event.");
+  } else {
+    alert("No food will be provided at the event.");
+  }
+}
+  </script>
+</body>
+</html>
