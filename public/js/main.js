@@ -18,8 +18,10 @@ Promise.all([
     const hostImages = event.hosts.map((hostName) => {
       const matchingHost = hostsData.find((host) => host.name === hostName);
       // Use matchingHost.image if found, otherwise use a default image path
-      return matchingHost ? `<img src="${matchingHost.image}" alt="${hostName}" class="host-image"">` : `<img src="/not-found.webp" alt="Default Host" class="host-image">`;
-    });
+      return matchingHost ? 
+        `<img src="${matchingHost.image}" alt="${hostName}" class="host-image"">` : 
+        `<img src="/not-found.webp" alt="Default Host" class="host-image">`;
+    }).join('');
 
     // Check if the event is past and we haven't added the "Past Events" header yet
     const formattedDate = formatEventDate(event["start-time"]);
@@ -40,7 +42,7 @@ Promise.all([
 
     eventItem.innerHTML = `
       <div class="host-images">
-        ${hostImages.join("")}
+        ${hostImages}
       </div>
       <div class="event-info">
         <strong class="event-title">${event.title}</strong>

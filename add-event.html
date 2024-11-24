@@ -138,13 +138,13 @@
         hosts.sort((a, b) => a.name.localeCompare(b.name));
 
         // Populate hosts dropdown
-        const hostSelect = document.getElementById("host");
+        const hostSelect = document.getElementById("hosts");
         hostSelect.innerHTML = hosts
           .map((host) => `<option value="${host.name}">${host.name}</option>`)
           .join("");
       } catch (error) {
         console.error("Failed to load hosts:", error);
-        const hostSelect = document.getElementById("host");
+        const hostSelect = document.getElementById("hosts");
         hostSelect.innerHTML = `<option value="" disabled>Unable to load hosts</option>`;
       }
 
@@ -180,7 +180,8 @@
     const endAmPm = document.getElementById("end-ampm").value;
 
     const location = document.getElementById("location").value;
-    const hosts = document.getElementById("host").value;
+    const hostsSelect = document.getElementById("hosts");
+    const selectedHost = [hostsSelect.value]; 
     const food = document.getElementById("food").value;
     const link = document.getElementById("link").value;
 
@@ -196,18 +197,32 @@
     // Create an event object
     const eventData = {
       title,
-      "star-time": startTime.toISO(),
-      "end-Time": endTime.toISO(),
+      "start-time": startTime.toISO(),
+      "end-time": endTime.toISO(),
       location,
-      hosts,
+      hosts: selectedHost,
       food,
       link,
     };
 
     console.log("Event Data:", eventData);
 
-    // Here, you could send the data to your backend
-    // Example: fetch("http://localhost:3000/add-event", { method: "POST", body: JSON.stringify(eventData) });
+
+    fetch("http://localhost:3000/add-event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(eventData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Event added successfully!');
+        } else {
+          alert('Failed to add event.');
+        }
+      })
+      .catch((error) => console.error('Error submitting event:', error));
   }
 
   function combineDateAndTimePacific(date, hour, minute, ampm) {

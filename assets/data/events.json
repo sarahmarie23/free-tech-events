@@ -42,5 +42,49 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/aittg-seattle/events/304465107/?eventOrigin=group_upcoming_events"
+  },
+  {
+    "title": "test",
+    "start-time": "2024-11-25T17:00:00.000-08:00",
+    "end-time": "2024-11-25T20:00:00.000-08:00",
+    "location": "secret",
+    "hosts": [
+      "GDG Seattle"
+    ],
+    "food": "Yes",
+    "link": "http://freetechevents.com"
+  },
+  {
+    "title": "Liz's Birthday",
+    "start-time": "2024-11-28T00:00:00.000-08:00",
+    "end-time": "2024-11-28T23:45:00.000-08:00",
+    "location": "Everywhere",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "http://freetechevents.com"
+  },
+  {
+    "title": "Yesterda",
+    "start-time": "2024-11-23T05:00:00.000-08:00",
+    "end-time": "2024-11-23T23:30:00.000-08:00",
+    "location": "Everywhere",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "http://freetechevents.com"
+  },
+  {
+    "title": "last month",
+    "start-time": "2024-10-10T05:00:00.000-07:00",
+    "end-time": "2024-10-10T23:30:00.000-07:00",
+    "location": "Everywhere",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "http://freetechevents.com"
   }
 ]

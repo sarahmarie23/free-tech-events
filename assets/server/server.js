@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -6,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Serve static files from the 'public' folder (JS, CSS, and images)
@@ -35,6 +37,10 @@ function readEventsFromFile() {
 app.post('/add-event', (req, res) => {
   const newEvent = req.body;
 
+  if (!Array.isArray(newEvent.hosts)) {
+    newEvent.hosts = [newEvent.hosts]; // Make sure it's an array
+  }
+  
   // Read the existing events.json file
   fs.readFile(path.join(__dirname, '..', 'data', 'events.json'), 'utf8', (err, data) => {
     if (err) {
