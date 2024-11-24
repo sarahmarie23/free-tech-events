@@ -1,9 +1,8 @@
 [
   {
     "title": "DevFest Seattle 2024",
-    "date": "2024-11-16",
-    "start-time": "9:00 AM",
-    "end-time": "3:00 PM",
+    "start-time": "2024-11-16T09:00:00-08:00",
+    "end-time": "2024-11-16T15:00:00-08:00",
     "location": "UW Seattle",
     "hosts": [
       "GDG Seattle"
@@ -13,9 +12,8 @@
   },
   {
     "title": "ODSC & Google Cloud AI Meetup",
-    "date": "2024-12-04",
-    "start-time": "6:00 PM",
-    "end-time": "8:00 PM",
+    "start-time": "2024-12-04T18:00:00-08:00",
+    "end-time": "2024-12-04T20:00:00-08:00",
     "location": "The Cafe Event Space at SURF Incubator. 999 3rd Avenue, Suite 700, Seattle, WA 98104",
     "hosts": [
       "ODSC"
@@ -25,9 +23,8 @@
   },
   {
     "title": "Seattle Code & Coffee @ Capital One Café",
-    "date": "2024-12-14",
-    "start-time": "12:00 PM",
-    "end-time": "3:00 PM",
+    "start-time": "2024-12-14T12:00:00-08:00",
+    "end-time": "2024-12-14T15:00:00-08:00",
     "location": "Capital One Café 333 Westlake Ave N · Seattle, WA",
     "hosts": [
       "Seattle Code and Coffee"
@@ -37,9 +34,8 @@
   },
   {
     "title": "AI Meetup for Iceberg Streaming Analytics",
-    "date": "2024-11-20",
-    "start-time": "5:30 PM",
-    "end-time": "8:30 PM",
+    "start-time": "2024-11-21T17:30:00-08:00",
+    "end-time": "2024-11-21T20:30:00-08:00",
     "location": "MotherDuck 2811 Fairview Ave · Seattle, WA",
     "hosts": [
       "Seattle AI/ML/Data Developers Group"

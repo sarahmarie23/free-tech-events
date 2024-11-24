@@ -71,8 +71,8 @@
     <label for="location">Location</label>
     <input type="text" id="location" name="location" required>
 
-    <label for="host">Host</label>
-    <select id="host" name="host" required></select>
+    <label for="hosts">Host</label>
+    <select id="hosts" name="hosts" required></select>
 
     <label for="food">Will there be food?</label>
     <select id="food" name="food">
@@ -86,7 +86,9 @@
     <button type="submit">Add Event</button>
   </form>
 
-  <script>
+  <script type = "module">
+  import { DateTime } from "https://cdn.jsdelivr.net/npm/luxon@3.0.0/build/es6/luxon.min.js";
+
     // Helper functions
     function generateHoursOptions(defaultHour = 5) {
       return Array.from({ length: 12 }, (_, i) => {
@@ -157,17 +159,77 @@
 
       const foodSelect = document.getElementById("food");
       foodSelect.addEventListener('change', handleFoodChange);
+
+      document.getElementById("add-event-form").addEventListener("submit", handleFormSubmission);
     }
 
-function handleFoodChange() {
-  const foodSelect = document.getElementById("food");
-  const foodChoice = foodSelect.value;
-  if (foodChoice === "Yes") {
-    alert("Great! There will be food at the event.");
-  } else {
-    alert("No food will be provided at the event.");
+    function handleFormSubmission(event) {
+    event.preventDefault(); // Prevent the form's default submission
+
+    const title = document.getElementById("title").value;
+    const date = document.getElementById("date").value;
+
+    // Start time inputs
+    const startHour = parseInt(document.getElementById("start-hour").value, 10);
+    const startMinute = parseInt(document.getElementById("start-minute").value, 10);
+    const startAmPm = document.getElementById("start-ampm").value;
+
+    // End time inputs
+    const endHour = parseInt(document.getElementById("end-hour").value, 10);
+    const endMinute = parseInt(document.getElementById("end-minute").value, 10);
+    const endAmPm = document.getElementById("end-ampm").value;
+
+    const location = document.getElementById("location").value;
+    const hosts = document.getElementById("host").value;
+    const food = document.getElementById("food").value;
+    const link = document.getElementById("link").value;
+
+    // Combine date and time into Luxon DateTime objects (Pacific Time)
+    const startTime = combineDateAndTimePacific(date, startHour, startMinute, startAmPm);
+    const endTime = combineDateAndTimePacific(date, endHour, endMinute, endAmPm);
+
+    if (startTime >= endTime) {
+      alert("End time must be after start time.");
+      return;
+    }
+
+    // Create an event object
+    const eventData = {
+      title,
+      "star-time": startTime.toISO(),
+      "end-Time": endTime.toISO(),
+      location,
+      hosts,
+      food,
+      link,
+    };
+
+    console.log("Event Data:", eventData);
+
+    // Here, you could send the data to your backend
+    // Example: fetch("http://localhost:3000/add-event", { method: "POST", body: JSON.stringify(eventData) });
   }
-}
+
+  function combineDateAndTimePacific(date, hour, minute, ampm) {
+    // Convert hour to 24-hour format
+    hour = ampm === "PM" && hour !== 12 ? hour + 12 : hour === 12 && ampm === "AM" ? 0 : hour;
+
+    // Create Luxon DateTime object in Pacific Time
+    return DateTime.fromISO(date, { zone: "America/Los_Angeles" }).set({
+      hour,
+      minute,
+    });
+  }
+
+  function handleFoodChange() {
+    const foodSelect = document.getElementById("food");
+    const foodChoice = foodSelect.value;
+    if (foodChoice === "Yes") {
+      alert("Great! There will be food at the event.");
+    } else {
+      alert("No food will be provided at the event.");
+    }
+  }
   </script>
 </body>
 </html>

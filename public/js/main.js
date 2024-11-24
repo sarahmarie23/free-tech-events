@@ -22,13 +22,11 @@ Promise.all([
     });
 
     // Check if the event is past and we haven't added the "Past Events" header yet
-    const eventDate = new Date(event.date);
-    const formattedDate = formatEventDate(event.date);
-
+    const formattedDate = formatEventDate(event["start-time"]);
     const formattedStartTime = parseTime(event["start-time"]);
     const formattedEndTime = parseTime(event["end-time"]);
 
-    if (eventDate < new Date() && !isPastEvents) {
+    if (new Date(event["start-time"]) < new Date() && !isPastEvents) {
       // Add the "Past Events" header before past events
       const pastEventsHeader = document.createElement("h2");
       pastEventsHeader.textContent = "Past Events";
@@ -69,7 +67,7 @@ function sortEvents(events) {
   const past = [];
 
   events.forEach((event) => {
-    const eventDate = new Date(event.date);
+    const eventDate = new Date(event["start-time"]);
     if (eventDate >= now) {
       upcoming.push(event);
     } else {
@@ -94,24 +92,14 @@ function formatEventDate(eventDate) {
   return date.toLocaleDateString("en-US", options);
 }
 
-function parseTime(timeString) {
-  const [time, modifier] = timeString.split(' ');
-  let [hours, minutes] = time.split(':').map(Number);
-
-  if (modifier === 'PM' && hours !== 12) {
-    hours += 12; // Convert PM times to 24-hour format
-  } else if (modifier === 'AM' && hours === 12) {
-    hours = 0; // Convert 12 AM to 0 (midnight)
-  }
-
-  // Construct a full date with the current date and parsed time
-  const now = new Date();
-  now.setHours(hours, minutes, 0, 0);
-
-  const formattedTime = now.toLocaleTimeString("en-US", {
-    hour: "numeric", // Will show hours without leading zeros
+function parseTime(isoString) {
+  const date = new Date(isoString);
+  
+  return date.toLocaleTimeString("en-US", {
+    hour: "numeric",  
     minute: "2-digit",
-    timeZone: "America/Los_Angeles"
+    hour12: true,    
+    timeZone: "America/Los_Angeles" 
   });
 
   return formattedTime;
