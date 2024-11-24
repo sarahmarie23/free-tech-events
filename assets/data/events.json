@@ -42,5 +42,27 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/aittg-seattle/events/304465107/?eventOrigin=group_upcoming_events"
+  },
+  {
+    "title": "LLMs and Unstructured Data",
+    "start-time": "2024-12-11T17:00:00.000-08:00",
+    "end-time": "2024-12-11T20:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Ave NE, Redmond, WA 98052",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "No",
+    "link": "https://lu.ma/sqze3ejt?lm_api_id=cal-8zLyKMgaKTvonbT&lm_medium=newsletter&lm_source=calendar"
+  },
+  {
+    "title": "Open Source AI Hackathon #12 - AI Agents",
+    "start-time": "2024-12-14T09:00:00.000-08:00",
+    "end-time": "2024-12-14T18:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Ave NE, Redmond, WA 98052",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/uqxvkjmm?lm_api_id=cal-8zLyKMgaKTvonbT&lm_medium=newsletter&lm_source=calendar"
   }
 ]
