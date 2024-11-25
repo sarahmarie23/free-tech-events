@@ -18,6 +18,13 @@
     {
         "name": "Seattle AI/ML/Data Developers Group",
         "image": "public/images/aicamp.png"
+    },
+    {
+        "name": "Seattle AI Society",
+        "image": "public/images/seattle_ai_society.jpg"
+    },
+    {
+        "name": "Microsoft Reactor Redmond",
+        "image": "public/images/microsoft_reactor_redmond.jpg"   
     }
-
 ]
