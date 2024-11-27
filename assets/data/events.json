@@ -97,5 +97,16 @@
     ],
     "food": "No",
     "link": "https://www.meetup.com/microsoft-reactor-redmond/events/303905731/?eventOrigin=group_events_list"
+  },
+  {
+    "title": "AI Meetup (December) for AI, GenAI and LLMs",
+    "start-time": "2024-12-11T17:00:00.000-08:00",
+    "end-time": "2024-12-11T20:00:00.000-08:00",
+    "location": "GitHub Bellevue 10900 NE 4th St Floor 21 · Bellevue, WA",
+    "hosts": [
+      "Seattle AI/ML/Data Developers Group"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/aittg-seattle/events/304783604?response=3&action=rsvp&utm_medium=email&utm_source=braze_canvas&utm_campaign=mmrk_alleng_event_announcement_prod_v7_en&utm_term=promo&utm_content=lp_meetup"
   }
 ]
