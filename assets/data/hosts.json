@@ -26,5 +26,13 @@
     {
         "name": "Microsoft Reactor Redmond",
         "image": "public/images/microsoft_reactor_redmond.jpg"   
+    },
+    {
+        "name": "Seattle Spark+AI Meetup",
+        "image": "public/images/seattle_spark_meetup.jpg"
+    },
+    {
+        "name": "Seattle Data, AI & Security",
+        "image": "public/images/seattle_data_ai_security.jpg"
     }
 ]

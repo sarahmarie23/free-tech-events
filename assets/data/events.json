@@ -108,5 +108,38 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/aittg-seattle/events/304783604?response=3&action=rsvp&utm_medium=email&utm_source=braze_canvas&utm_campaign=mmrk_alleng_event_announcement_prod_v7_en&utm_term=promo&utm_content=lp_meetup"
+  },
+  {
+    "title": "🎊Christmas Party ☃️🎅🎄 An Open Source Event!🎉",
+    "start-time": "2024-12-04T18:00:00.000-08:00",
+    "end-time": "2024-12-04T21:00:00.000-08:00",
+    "location": "Databricks Bellevue 500 108th Ave NE, 18th Floor · Bellevue, WA",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/298581114/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
+  },
+  {
+    "title": "In-Person Networking Mixer",
+    "start-time": "2024-12-10T17:00:00.000-08:00",
+    "end-time": "2024-12-10T20:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Ave NE, Redmond, WA 98052",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/wqk106dq"
+  },
+  {
+    "title": "AI/Tech Coffee Social",
+    "start-time": "2024-12-14T10:00:00.000-08:00",
+    "end-time": "2024-12-14T12:00:00.000-08:00",
+    "location": "Armistice Coffee 6717 Roosevelt Way Northeast, Suite 101 · Seattle, WA",
+    "hosts": [
+      "Seattle AI Society"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/ai-society/events/304348463/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
   }
 ]
