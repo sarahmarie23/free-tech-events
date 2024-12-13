@@ -43,20 +43,22 @@ function createAndAppendEventItem(event, hostsData, eventList) {
   const formattedDate = formatEventDate(event["start-time"]);
   const formattedStartTime = parseTime(event["start-time"]);
   const formattedEndTime = parseTime(event["end-time"]);
+  const formattedFood = event["food"] == "Yes" ? `✅` : `❌`;
 
   const eventItem = document.createElement("li");
   eventItem.className = "event-card";
 
   eventItem.innerHTML = `
-    <div class="host-images">
-      ${hostImages}
-    </div>
-    <div class="event-info">
-      <strong class="event-title">${event.title}</strong>
-      📅 ${formattedDate}<br> 
-      ⏰ ${formattedStartTime} - ${formattedEndTime}<br>
-      <p>📍 <em>${event.location}</em></p>
-      <a href="${event.link}" class="event-link" target="_blank">More Info</a>
+  <div class="host-images">
+  ${hostImages}
+  </div>
+  <div class="event-info">
+  <strong class="event-title">${event.title}</strong>
+  📅 ${formattedDate}<br> 
+  ⏰ ${formattedStartTime} - ${formattedEndTime}<br>
+  <span class="event-location">📍 <em>${event.location}</em></span>
+  🍕 Food: ${formattedFood} 
+  <a href="${event.link}" class="event-link" target="_blank">More Info</a>
     </div>
   `;
 

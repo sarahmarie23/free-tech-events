@@ -69,7 +69,13 @@
   text-decoration: underline;
 }
 
-
+.event-location {
+  display: inline;
+  white-space: nowrap; 
+}
+.event-location em {
+  font-style: italic; 
+}
 
 /* Desktop-Specific Styles */
 @media (min-width: 768px) {
