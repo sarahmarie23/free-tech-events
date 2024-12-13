@@ -34,5 +34,9 @@
     {
         "name": "Seattle Data, AI & Security",
         "image": "public/images/seattle_data_ai_security.jpg"
+    },
+    {
+        "name": "Big Data Bellevue",
+        "image": "public/images/big_data_bellevue.jpg"
     }
 ]
