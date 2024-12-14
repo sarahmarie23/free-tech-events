@@ -146,7 +146,7 @@
     "title": "Tech Talks: Amplifying Inclusion in Every Byte Powered by A.L.A. Equity",
     "start-time": "2024-12-06T13:00:00.000-08:00",
     "end-time": "2024-12-06T18:00:00.000-08:00",
-    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
     "hosts": [
       "Microsoft Reactor Redmond"
     ],
@@ -157,7 +157,7 @@
     "title": "AI: Industry Perspectives",
     "start-time": "2025-01-29T16:30:00.000-08:00",
     "end-time": "2025-01-29T20:00:00.000-08:00",
-    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
     "hosts": [
       "Seattle Data, AI & Security"
     ],
@@ -168,7 +168,7 @@
     "title": "RHeartPython New Year Celebration",
     "start-time": "2025-01-14T17:00:00.000-08:00",
     "end-time": "2025-01-14T20:00:00.000-08:00",
-    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
     "hosts": [
       "Microsoft Reactor Redmond"
     ],
@@ -179,11 +179,22 @@
     "title": "Apache Gluten: Accelerating SparkSQL with Spark on Velox",
     "start-time": "2025-01-16T18:30:00.000-08:00",
     "end-time": "2025-01-16T19:30:00.000-08:00",
-    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
     "hosts": [
       "Big Data Bellevue"
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/big-data-bellevue-bdb/events/304677912/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
+  },
+  {
+    "title": "Text-to-SQL Mini Summit with Waii.ai",
+    "start-time": "2025-01-23T17:30:00.000-08:00",
+    "end-time": "2025-01-23T20:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/304958660/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
   }
 ]
