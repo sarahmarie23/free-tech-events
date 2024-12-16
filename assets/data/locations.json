@@ -1,0 +1,42 @@
+[
+    {
+        "name": "UW Seattle",
+        "address": "1410 NE Campus Pkwy · Seattle, WA 98195" 
+    },
+    {
+        "name": "The Cafe Event Space at SURF Incubator",
+        "address": "999 3rd Avenue, Suite 700 · Seattle, WA 98104"
+    },
+    {
+        "name": "Capital One Café",
+        "address": "333 Westlake Ave N · Seattle, WA 98109"
+    },
+    {
+        "name": "MotherDuck",
+        "address": "2811 Fairview Ave E · Seattle, WA 98102"
+    },
+    {
+        "name": "Microsoft Reactor Redmond",
+        "address": "3709 157th Ave NE · Redmond, WA 98052"
+    },
+    {
+        "name": "The Station",
+        "address": "3000 S Alaska St Suite B · Seattle, WA 98108"
+    },
+    {
+        "name": "Walton Lofts",
+        "address": "75 Vine St · Seattle, WA 98121"
+    }, 
+    {
+        "name": "GitHub Bellevue",
+        "address": "10900 NE 4th St Floor 21 · Bellevue, WA 98004"
+    },
+    {
+        "name": "Databricks Bellevue",
+        "address": "500 108th Ave NE, 18th Floor · Bellevue, WA 98004"
+    },
+    {
+        "name": "Armistice Coffee",
+        "address": "6717 Roosevelt Way Northeast, Suite 101 · Seattle, WA 98115"
+    }
+]
