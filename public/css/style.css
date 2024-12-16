@@ -46,13 +46,20 @@
   border-radius: 5px;
 }
 
+.event-info, .event-title, .event-location {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: visible;
+}
+
 .event-info {
-  flex: 1;
+  flex: 1 a auto;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
-  min-width: 300px;
-  gap: 5px; /* Space between text items */
+  min-width: 0;
+  gap: 5px; 
 }
 
 .event-info strong {
@@ -71,8 +78,8 @@
 
 .event-location {
   display: inline;
-  white-space: nowrap; 
 }
+
 .event-location em {
   font-style: italic; 
 }
@@ -100,7 +107,17 @@
 /* Center Align Mobile Content */
 @media (max-width: 768px) {
   .event-card {
+    flex-direction: column; 
+    width: calc(100% - 40px);
+    max-width: 500px;
     text-align: left;
+  }
+
+  .event-info {
+    flex: 1;
+    width: auto;
+    overflow-wrap: break-word;
+    word-break: break-word; 
   }
 
   .host-images {
