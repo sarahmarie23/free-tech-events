@@ -218,5 +218,16 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/305126078/"
+  },
+  {
+    "title": "AI meetup (Seattle): AI, LLMs, and ML",
+    "start-time": "2025-01-22T17:00:00.000-08:00",
+    "end-time": "2025-01-22T20:00:00.000-08:00",
+    "location": "Github 10900 NE 4th St, Floor 21, Bellevue, WA 98004",
+    "hosts": [
+      "Seattle AI/ML/Data Developers Group"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025012217"
   }
 ]
