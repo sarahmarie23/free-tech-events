@@ -165,14 +165,14 @@
     "link": "https://lu.ma/uatc86us"
   },
   {
-    "title": "RHeartPython New Year Celebration",
-    "start-time": "2025-01-14T17:00:00.000-08:00",
+    "title": "💜 From R to Python to R 💜 - Stories, Code, Games & Connection 🎊",
+    "start-time": "2025-01-14T18:00:00.000-08:00",
     "end-time": "2025-01-14T20:00:00.000-08:00",
     "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA 98052",
     "hosts": [
       "Microsoft Reactor Redmond"
     ],
-    "food": "No",
+    "food": "Yes",
     "link": "https://www.meetup.com/microsoft-reactor-redmond/events/304510748/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
   },
   {
@@ -209,17 +209,6 @@
     "link": "https://www.meetup.com/microsoft-reactor-redmond/events/304639608/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
   },
   {
-    "title": "Seattle Code & Coffee @ Capital One Café",
-    "start-time": "2025-01-11T12:00:00.000-08:00",
-    "end-time": "2025-01-11T15:00:00.000-08:00",
-    "location": "Capital One Café 333 Westlake Ave N · Seattle, WA",
-    "hosts": [
-      "Seattle Code and Coffee"
-    ],
-    "food": "Yes",
-    "link": "https://www.meetup.com/seattle-code-and-coffee/events/305126078/"
-  },
-  {
     "title": "AI meetup (Seattle): AI, LLMs, and ML",
     "start-time": "2025-01-22T17:00:00.000-08:00",
     "end-time": "2025-01-22T20:00:00.000-08:00",
@@ -229,5 +218,93 @@
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025012217"
+  },
+  {
+    "title": "Innovate QA: Scaling Software Quality: Strategies for a Seamless Transformation",
+    "start-time": "2025-01-16T16:30:00.000-08:00",
+    "end-time": "2025-01-16T19:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/305522193/"
+  },
+  {
+    "title": "Grafana Unified Observability",
+    "start-time": "2025-01-24T10:00:00.000-08:00",
+    "end-time": "2025-01-24T12:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/305522809/"
+  },
+  {
+    "title": "Oracle AI meetup (Seattle): Bring AI to Your Data",
+    "start-time": "2025-02-19T17:00:00.000-08:00",
+    "end-time": "2025-02-19T20:30:00.000-08:00",
+    "location": "Russell Investments Center 1301 2nd Avenue · Seattle, WA",
+    "hosts": [
+      "Seattle AI/ML/Data Developers Group"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025021917"
+  },
+  {
+    "title": "Oracle AI meetup (Seattle): Bring AI to Your Data",
+    "start-time": "2025-02-20T17:00:00.000-08:00",
+    "end-time": "2025-02-20T20:30:00.000-08:00",
+    "location": "Russell Investments Center 1301 2nd Avenue · Seattle, WA",
+    "hosts": [
+      "Seattle AI/ML/Data Developers Group"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025021917"
+  },
+  {
+    "title": "Hands-on Workshop: Build a GenAI App in a Day with DataStax and Microsoft",
+    "start-time": "2025-01-28T09:00:00.000-08:00",
+    "end-time": "2025-01-28T15:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/305461724/"
+  },
+  {
+    "title": "👩‍💻 Women's Day Celebration 👩🏽‍🔧🎊🚀 Women In Tech Party! 🌸🌷",
+    "start-time": "2025-03-13T18:00:00.000-07:00",
+    "end-time": "2025-03-13T21:00:00.000-07:00",
+    "location": "Databricks Bellevue 500 108th Ave NE, 18th Floor · Bellevue, WA",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395752/"
+  },
+  {
+    "title": "🔐💕 Data ♥️ you - Keeping OSS Secure",
+    "start-time": "2025-02-20T18:00:00.000-08:00",
+    "end-time": "2025-02-20T21:00:00.000-08:00",
+    "location": "Databricks Bellevue 500 108th Ave NE, 18th Floor · Bellevue, WA",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395671/"
+  },
+  {
+    "title": "👩‍🚀🦾🧑🏽‍💻👩🏻‍🦽👨‍🦯 Tech For Good ♥️",
+    "start-time": "2025-01-23T18:00:00.000-08:00",
+    "end-time": "2025-01-23T21:00:00.000-08:00",
+    "location": "Databricks Bellevue 500 108th Ave NE, 18th Floor · Bellevue, WA",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395577/"
   }
 ]
