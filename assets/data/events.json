@@ -306,5 +306,16 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-spark-meetup/events/305395577/"
+  },
+  {
+    "title": "Discover How AI Redefines Expectations Responsibly",
+    "start-time": "2025-03-18T16:30:00.000-07:00",
+    "end-time": "2025-03-18T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Ave NE · Redmond, WA",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/305715200/"
   }
 ]

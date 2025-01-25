@@ -8,22 +8,50 @@ Promise.all([
   const eventList = document.getElementById("event-list");
   eventList.innerHTML = ""; // Clear existing content
 
-  const { upcomingEvents, pastEvents } = sortEvents(events);
+  const { thisWeekEvents, nextWeekEvents, futureEvents, pastEvents } = sortEvents(events);
 
-  // Display upcoming events
-  upcomingEvents.forEach(event => {
-    createAndAppendEventItem(event, hostsData, eventList);
-  });
+  // Display "This Week" events
+  if (thisWeekEvents.length > 0) {
+    const thisWeekHeader = document.createElement("h2");
+    thisWeekHeader.textContent = `This Week (${formatWeekRange(0)})`;
+    eventList.appendChild(thisWeekHeader);
+
+    thisWeekEvents.forEach(event => {
+      createAndAppendEventItem(event, hostsData, eventList);
+    });
+  }
+
+  // Display "Next Week" events
+  if (nextWeekEvents.length > 0) {
+    const nextWeekHeader = document.createElement("h2");
+    nextWeekHeader.textContent = `Next Week (${formatWeekRange(1)})`;
+    eventList.appendChild(nextWeekHeader);
+
+    nextWeekEvents.forEach(event => {
+      createAndAppendEventItem(event, hostsData, eventList);
+    });
+  }
+
+  // Display Future Events
+  if (futureEvents.length > 0) {
+    const header = document.createElement("h2");
+    header.textContent = `Future Events`;
+    eventList.appendChild(header);
+    futureEvents.forEach(event => {createAndAppendEventItem(event, hostsData, eventList);});
+  }
 
   // Header to separate upcoming and past events
-  const pastEventsHeader = document.createElement("h2");
-  pastEventsHeader.textContent = "Past Events";
-  eventList.appendChild(pastEventsHeader);
+  //const pastEventsHeader = document.createElement("h2");
+  //pastEventsHeader.textContent = "Past Events";
+  //eventList.appendChild(pastEventsHeader);
 
   // Display past events
-  pastEvents.forEach(event => {
-    createAndAppendEventItem(event, hostsData, eventList);
-  });
+  if (pastEvents.length > 0) {
+    const header = document.createElement("h2");
+    header.textContent = `Past Events`;
+    eventList.appendChild(header);
+    pastEvents.forEach(event => createAndAppendEventItem(event, hostsData, eventList));
+  }
   
 }).catch((error) => {
   console.error("Error loading data:", error);
@@ -67,33 +95,89 @@ function createAndAppendEventItem(event, hostsData, eventList) {
 
 // Function to sort events into upcoming and past
 function sortEvents(events) {
-  const now = new Date(); 
+  const now = new Date();
 
-  const upcoming = [];
-  const past = [];
+  const today = now.getDay();
+  const startOfThisWeek = new Date(now);
+  startOfThisWeek.setDate(now.getDate() - ((today + 6) % 7)); // Adjust Sunday (0) to after Saturday (6)
+  startOfThisWeek.setHours(0, 0, 0, 0);
 
-  events.forEach((event) => {
+  // Calculate the end of this week (Sunday at 23:59)
+  const endOfThisWeek = new Date(startOfThisWeek);
+  endOfThisWeek.setDate(startOfThisWeek.getDate() + 6);
+  endOfThisWeek.setHours(23, 59, 59, 999);
+
+  // Calculate the start of next week (Monday of next week)
+  const startOfNextWeek = new Date(endOfThisWeek);
+  startOfNextWeek.setDate(endOfThisWeek.getDate() + 1);
+  
+  // Calculate the end of next week (Sunday at 23:59)
+  const endOfNextWeek = new Date(startOfNextWeek);
+  endOfNextWeek.setDate(startOfNextWeek.getDate() + 6);
+  endOfNextWeek.setHours(23, 59, 59, 999);
+
+  const thisWeekEvents = [];
+  const nextWeekEvents = [];
+  const futureEvents = [];
+  const pastEvents = [];
+
+  events.forEach(event => {
     const eventStart = new Date(event["start-time"]);
     const eventEnd = new Date(event["end-time"]);
 
-    event.isPast = eventStart < now && eventEnd < now;
-
-    if (eventStart > now || (eventStart <= now && eventEnd >= now)) {
-      console.log("Upcoming event: ", event.title);
-      upcoming.push(event);
+    if (eventStart >= startOfThisWeek && eventStart <= endOfThisWeek) {
+      // Event is this week
+      if (eventEnd < now) {
+        // If the event ended before now, it should be in past events
+        pastEvents.push(event);
+      } else {
+        // Otherwise, it's an ongoing or upcoming event this week
+        thisWeekEvents.push(event);
+      }
+    } else if (eventStart >= startOfNextWeek && eventStart <= endOfNextWeek) {
+      // Event is next week
+      nextWeekEvents.push(event);
+    } else if (eventStart > endOfNextWeek) {
+      // Event is in the future (after next week)
+      futureEvents.push(event);
     } else {
-      console.log("Past event: ", event.title);
-      past.push(event);
+      // Event is in the past
+      pastEvents.push(event);
     }
   });
 
-  // Sort upcoming events by date (earliest first)
-  upcoming.sort((a, b) => new Date(a["start-time"]) - new Date(b["start-time"]));
+  // Sort events within each group
+  thisWeekEvents.sort((a, b) => new Date(a["start-time"]) - new Date(b["start-time"]));
+  nextWeekEvents.sort((a, b) => new Date(a["start-time"]) - new Date(b["start-time"]));
+  futureEvents.sort((a, b) => new Date(a["start-time"]) - new Date(b["start-time"]));
+  pastEvents.sort((a, b) => new Date(b["start-time"]) - new Date(a["start-time"]));
 
-  // Sort past events by date (most recent first)
-  past.sort((a, b) => new Date(b["start-time"]) - new Date(a["start-time"]));
+  return { thisWeekEvents, nextWeekEvents, futureEvents, pastEvents };
+}
 
-  return { upcomingEvents: upcoming, pastEvents: past }; 
+// Helper to get the start of the week (Sunday)
+function getStartOfWeek(date) {
+  const start = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  start.setDate(start.getDate() - start.getDay()); // Adjust to Sunday
+  return start;
+}
+
+// Helper to format week range (e.g., "Jan 20–26")
+function formatWeekRange(weekOffset) {
+  const now = new Date();
+  const startOfThisWeek = getStartOfWeek(now);
+  const startOfTargetWeek = new Date(startOfThisWeek);
+  startOfTargetWeek.setDate(startOfTargetWeek.getDate() +8 * weekOffset);
+
+  const endOfTargetWeek = new Date(startOfTargetWeek);
+  endOfTargetWeek.setDate(endOfTargetWeek.getDate() + 6);
+
+  const options = { month: "short", day: "numeric" };
+  const start = startOfTargetWeek.toLocaleDateString("en-US", options);
+  const end = endOfTargetWeek.toLocaleDateString("en-US", options);
+
+  return `${start}–${end}`;
 }
 
 function formatEventDate(eventDate) {
