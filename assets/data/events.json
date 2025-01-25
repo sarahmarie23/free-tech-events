@@ -317,5 +317,16 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/big-data-ai-seattle/events/305715200/"
+  },
+  {
+    "title": "The Confidence Edge for Your Tech Career: 3 Strategies You Can Use Today",
+    "start-time": "2025-01-30T15:30:00.000-08:00",
+    "end-time": "2025-01-30T17:30:00.000-08:00",
+    "location": "Northeastern University, 225 Terry Avenue North · Seattle WA 98109 ",
+    "hosts": [
+      "GDG"
+    ],
+    "food": "No",
+    "link": "https://gdg.community.dev/events/details/google-gdg-on-campus-northeastern-university-seattle-seattle-united-states-presents-the-confidence-edge-for-your-tech-career-3-strategies-you-can-use-today/"
   }
 ]
