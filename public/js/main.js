@@ -97,9 +97,7 @@ function createAndAppendEventItem(event, hostsData, eventList) {
 function sortEvents(events) {
   const now = new Date();
 
-  const today = now.getDay();
-  const startOfThisWeek = new Date(now);
-  startOfThisWeek.setDate(now.getDate() - ((today + 6) % 7)); // Adjust Sunday (0) to after Saturday (6)
+  const startOfThisWeek = getStartOfWeek(now);
   startOfThisWeek.setHours(0, 0, 0, 0);
 
   // Calculate the end of this week (Sunday at 23:59)
@@ -108,12 +106,12 @@ function sortEvents(events) {
   endOfThisWeek.setHours(23, 59, 59, 999);
 
   // Calculate the start of next week (Monday of next week)
-  const startOfNextWeek = new Date(endOfThisWeek);
-  startOfNextWeek.setDate(endOfThisWeek.getDate() + 1);
+  const startOfNextWeek = new Date(startOfThisWeek);
+  startOfNextWeek.setDate(startOfThisWeek.getDate() + 7);
   
   // Calculate the end of next week (Sunday at 23:59)
   const endOfNextWeek = new Date(startOfNextWeek);
-  endOfNextWeek.setDate(startOfNextWeek.getDate() + 6);
+  endOfNextWeek.setDate(endOfNextWeek.getDate() + 6);
   endOfNextWeek.setHours(23, 59, 59, 999);
 
   const thisWeekEvents = [];
@@ -157,9 +155,12 @@ function sortEvents(events) {
 
 // Helper to get the start of the week (Sunday)
 function getStartOfWeek(date) {
-  const start = new Date(date);
+  const pacificTime = new Date(date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+  const start = new Date(pacificTime);
   start.setHours(0, 0, 0, 0);
-  start.setDate(start.getDate() - start.getDay()); // Adjust to Sunday
+  const day = start.getDay(); // 0 (Sunday) to 6 (Saturday)
+  const diff = (day === 0 ? -6 : 1) - day; // Shift Sunday (-6) to Monday (1)
+  start.setDate(start.getDate() + diff); 
   return start;
 }
 
@@ -168,7 +169,7 @@ function formatWeekRange(weekOffset) {
   const now = new Date();
   const startOfThisWeek = getStartOfWeek(now);
   const startOfTargetWeek = new Date(startOfThisWeek);
-  startOfTargetWeek.setDate(startOfTargetWeek.getDate() +8 * weekOffset);
+  startOfTargetWeek.setDate(startOfTargetWeek.getDate() + 7 * weekOffset);
 
   const endOfTargetWeek = new Date(startOfTargetWeek);
   endOfTargetWeek.setDate(endOfTargetWeek.getDate() + 6);
