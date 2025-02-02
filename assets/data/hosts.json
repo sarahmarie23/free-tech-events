@@ -38,5 +38,9 @@
     {
         "name": "Big Data Bellevue",
         "image": "public/images/big_data_bellevue.jpg"
+    },
+    {
+        "name": "SeattleJS",
+        "image":"public/images/seattle-js.jpg"
     }
 ]

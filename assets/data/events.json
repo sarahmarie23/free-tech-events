@@ -328,5 +328,60 @@
     ],
     "food": "No",
     "link": "https://gdg.community.dev/events/details/google-gdg-on-campus-northeastern-university-seattle-seattle-united-states-presents-the-confidence-edge-for-your-tech-career-3-strategies-you-can-use-today/"
+  },
+  {
+    "title": "SeattleJS: Web Tech Talks - February",
+    "start-time": "2025-02-12T17:30:00.000-08:00",
+    "end-time": "2025-02-12T20:00:00.000-08:00",
+    "location": "Just The Tap 90 Blanchard St · Seattle, WA 98121",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "No",
+    "link": "https://lu.ma/ri1v2s92"
+  },
+  {
+    "title": "Code Katas with Seattle JS Hackers",
+    "start-time": "2025-02-18T17:30:00.000-08:00",
+    "end-time": "2025-02-18T20:00:00.000-08:00",
+    "location": "AWS Skills Center Seattle · 1915 Terry Ave, Seattle, WA 98101",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/nu11waw2"
+  },
+  {
+    "title": "Code Katas with Seattle JS Hackers",
+    "start-time": "2025-03-18T17:30:00.000-07:00",
+    "end-time": "2025-03-18T20:00:00.000-07:00",
+    "location": "AWS Skills Center Seattle · 1915 Terry Ave, Seattle, WA 98101",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/1plfszd4"
+  },
+  {
+    "title": "SeattleJS: Web Tech Talks - March",
+    "start-time": "2025-03-12T17:30:00.000-07:00",
+    "end-time": "2025-03-12T20:00:00.000-07:00",
+    "location": "Just The Tap 90 Blanchard St · Seattle, WA 98121",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "No",
+    "link": "https://lu.ma/m6wyho3t"
+  },
+  {
+    "title": "Seattle Code and Coffee @ Capital One Café",
+    "start-time": "2025-02-08T12:00:00.000-08:00",
+    "end-time": "2025-02-08T15:00:00.000-08:00",
+    "location": "Capital One Café 333 Westlake Ave N · Seattle, WA",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-code-and-coffee/events/305712065/"
   }
 ]

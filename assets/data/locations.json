@@ -38,5 +38,13 @@
     {
         "name": "Armistice Coffee",
         "address": "6717 Roosevelt Way Northeast, Suite 101 · Seattle, WA 98115"
+    },
+    {
+        "name": "Just The Tap",
+        "address": "90 Blanchard St · Seattle, WA 98121"
+    },
+    {
+        "name": "AWS Skills Center Seattle",
+        "address": "1915 Terry Ave · Seattle, WA 98101"
     }
 ]
