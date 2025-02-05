@@ -42,5 +42,9 @@
     {
         "name": "SeattleJS",
         "image":"public/images/seattle-js.jpg"
+    },
+    {
+        "name": "Seattle's 9Zero Climate Innovation Hub",
+        "image": "public/images/9zero.jpg"
     }
 ]
