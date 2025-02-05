@@ -383,5 +383,16 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/305712065/"
+  },
+  {
+    "title": "Open Source AI Hackathon #14 - AI Agents",
+    "start-time": "2025-02-22T09:00:00.000-08:00",
+    "end-time": "2025-02-22T18:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/0csh7daf?lm_&lm_api_id=cal-8zLyKMgaKTvonbT"
   }
 ]
