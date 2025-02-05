@@ -198,17 +198,6 @@
     "link": "https://www.meetup.com/microsoft-reactor-redmond/events/304958660/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
   },
   {
-    "title": "Leveraging AI to enhance delivery of consulting services",
-    "start-time": "2025-02-11T17:30:00.000-08:00",
-    "end-time": "2025-02-11T18:00:00.000-08:00",
-    "location": "Microsoft Reactor Redmond 3709 157th Avenue NE · Redmond, WA",
-    "hosts": [
-      "Microsoft Reactor Redmond"
-    ],
-    "food": "No",
-    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/304639608/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link"
-  },
-  {
     "title": "AI meetup (Seattle): AI, LLMs, and ML",
     "start-time": "2025-01-22T17:00:00.000-08:00",
     "end-time": "2025-01-22T20:00:00.000-08:00",
@@ -405,5 +394,16 @@
     ],
     "food": "No",
     "link": "https://lu.ma/wvf5msft"
+  },
+  {
+    "title": "AI meetup (Seattle): AI, LLMs, and ML",
+    "start-time": "2025-02-25T17:00:00.000-08:00",
+    "end-time": "2025-02-25T20:00:00.000-08:00",
+    "location": "GitHub Bellevue 10900 NE 4th St Floor 21 · Bellevue, WA",
+    "hosts": [
+      "Seattle AI/ML/Data Developers Group"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025022517"
   }
 ]
