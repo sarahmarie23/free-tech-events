@@ -69,7 +69,7 @@
     </div>
 
     <label for="location">Location</label>
-    <input type="text" id="location" name="location" required>
+    <select id="location" name="location" required></select>
 
     <label for="hosts">Host</label>
     <select id="hosts" name="hosts" required></select>
@@ -142,6 +142,17 @@
         hostSelect.innerHTML = hosts
           .map((host) => `<option value="${host.name}">${host.name}</option>`)
           .join("");
+
+        // Fetch and populate locations
+        const locationResponse = await fetch("assets/data/locations.json");
+        const locations = await locationResponse.json();
+        locations.sort((a, b) => a.name.localeCompare(b.name));
+
+        const locationSelect = document.getElementById("location");
+        locationSelect.innerHTML = locations
+          .map((location) => `<option value="${location.name}">${location.name}</option>`)
+          .join("");
+
       } catch (error) {
         console.error("Failed to load hosts:", error);
         const hostSelect = document.getElementById("hosts");
