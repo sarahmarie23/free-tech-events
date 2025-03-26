@@ -5,7 +5,7 @@
     "end-time": "2024-11-16T15:00:00-08:00",
     "location": "UW Seattle",
     "hosts": [
-      "GDG Seattle"
+      "GDG"
     ],
     "food": "Yes",
     "link": "https://gdg.community.dev/events/details/google-gdg-seattle-presents-devfest-seattle-2024/"
@@ -38,7 +38,7 @@
     "end-time": "2024-11-21T20:30:00-08:00",
     "location": "MotherDuck 2811 Fairview Ave · Seattle, WA",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/aittg-seattle/events/304465107/?eventOrigin=group_upcoming_events"
@@ -104,7 +104,7 @@
     "end-time": "2024-12-11T20:00:00.000-08:00",
     "location": "GitHub Bellevue 10900 NE 4th St Floor 21 · Bellevue, WA",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/aittg-seattle/events/304783604?response=3&action=rsvp&utm_medium=email&utm_source=braze_canvas&utm_campaign=mmrk_alleng_event_announcement_prod_v7_en&utm_term=promo&utm_content=lp_meetup"
@@ -203,7 +203,7 @@
     "end-time": "2025-01-22T20:00:00.000-08:00",
     "location": "Github 10900 NE 4th St, Floor 21, Bellevue, WA 98004",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025012217"
@@ -236,7 +236,7 @@
     "end-time": "2025-02-19T20:30:00.000-08:00",
     "location": "Russell Investments Center 1301 2nd Avenue · Seattle, WA",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025021917"
@@ -247,7 +247,7 @@
     "end-time": "2025-02-20T20:30:00.000-08:00",
     "location": "Russell Investments Center 1301 2nd Avenue · Seattle, WA",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025021917"
@@ -401,9 +401,152 @@
     "end-time": "2025-02-25T20:00:00.000-08:00",
     "location": "GitHub Bellevue 10900 NE 4th St Floor 21 · Bellevue, WA",
     "hosts": [
-      "Seattle AI/ML/Data Developers Group"
+      "AI Camp Seattle"
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025022517"
+  },
+  {
+    "title": "Google AI Workshop (Seattle): Deep dive into Gemini",
+    "start-time": "2025-03-26T17:00:00.000-07:00",
+    "end-time": "2025-03-26T20:00:00.000-07:00",
+    "location": "Fr. LeRoux Conference Center, Seattle University",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025031817"
+  },
+  {
+    "title": "AI meetup (Seattle): GenAI, LLMs, and Agent",
+    "start-time": "2025-04-01T17:00:00.000-07:00",
+    "end-time": "2025-04-01T20:00:00.000-07:00",
+    "location": "GitHub Bellevue",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025040117"
+  },
+  {
+    "title": "**🌟Special Event🌟** Databricks DevConnect + 'AMA' ♥️✨🚀",
+    "start-time": "2025-03-26T17:00:00.000-07:00",
+    "end-time": "2025-03-26T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305745583/"
+  },
+  {
+    "title": "🚀🤠 The Database is the Heart of the Business 🌎♥️",
+    "start-time": "2025-04-03T18:00:00.000-07:00",
+    "end-time": "2025-04-03T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395770/"
+  },
+  {
+    "title": "May the --force be with you 👩‍🚀🤖🤺🥷🌎🌟🤠",
+    "start-time": "2025-05-08T18:00:00.000-07:00",
+    "end-time": "2025-05-08T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395782/"
+  },
+  {
+    "title": "A Tech Summer Party 🏖☀️Pride + Health & Healthcare 🦀😎",
+    "start-time": "2025-06-05T18:00:00.000-07:00",
+    "end-time": "2025-06-05T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395789/"
+  },
+  {
+    "title": "👾🎯🧩🕹🎮🎰 Gamers Party 🎲💕",
+    "start-time": "2025-07-31T18:00:00.000-07:00",
+    "end-time": "2025-07-31T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395793/"
+  },
+  {
+    "title": "🤖💌📬✍🏽🌎♥️🚀 Generative AI multi-series: AI Poetry",
+    "start-time": "2025-08-28T18:00:00.000-07:00",
+    "end-time": "2025-08-28T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395805/"
+  },
+  {
+    "title": "💕🌎 🖼👨‍🎨🤖🌟 Generative AI multi-series: AI Art",
+    "start-time": "2025-09-25T18:00:00.000-07:00",
+    "end-time": "2025-09-25T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395818/"
+  },
+  {
+    "title": "👻🎃🍬👾 Halloween Open Source Spooky Party 🦸‍♀️🎊🥳🦾🥷🦸‍♀️🤠",
+    "start-time": "2025-10-23T18:00:00.000-07:00",
+    "end-time": "2025-10-23T21:00:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395832/"
+  },
+  {
+    "title": "SREs & DevOps 🤠🚀Open Source Event 📊👩‍💻",
+    "start-time": "2025-11-13T18:00:00.000-08:00",
+    "end-time": "2025-11-13T21:00:00.000-08:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395844/"
+  },
+  {
+    "title": "Annual Christmas Party 🎅🎄🧑‍🎄 CEOs and Santa!",
+    "start-time": "2025-12-04T18:00:00.000-08:00",
+    "end-time": "2025-12-04T21:00:00.000-08:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/305395851/"
+  },
+  {
+    "title": "Seattle Code & Coffee @ Capital One Café",
+    "start-time": "2025-04-05T12:00:00.000-07:00",
+    "end-time": "2025-04-05T15:00:00.000-07:00",
+    "location": "Capital One Café",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-code-and-coffee/events/306728644/"
   }
 ]
