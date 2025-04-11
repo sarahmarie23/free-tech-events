@@ -46,5 +46,9 @@
     {
         "name": "Seattle's 9Zero Climate Innovation Hub",
         "image": "public/images/9zero.jpg"
+    },
+    {
+        "name": "ProductTank Seattle",
+        "image": "public/images/producttank-seattle.jpg"
     }
 ]
