@@ -592,5 +592,27 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/307004851"
+  },
+  {
+    "title": "Using Creative Frameworks to Solve Problems with Generative AI",
+    "start-time": "2025-05-08T17:00:00.000-07:00",
+    "end-time": "2025-05-08T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "ProductTank Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/producttank-seattle/events/306981579"
+  },
+  {
+    "title": "AI in Action: Mental Models for LLMs & AI-Powered Productivity Hacks",
+    "start-time": "2025-06-12T17:00:00.000-07:00",
+    "end-time": "2025-06-12T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "ProductTank Seattle"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/producttank-seattle/events/306306318"
   }
 ]
