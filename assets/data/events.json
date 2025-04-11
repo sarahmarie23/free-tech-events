@@ -548,5 +548,49 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/306728644/"
+  },
+  {
+    "title": "HIMSS Student Summit",
+    "start-time": "2025-04-16T17:00:00.000-07:00",
+    "end-time": "2025-04-16T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/307090819/"
+  },
+  {
+    "title": "AI Ignite Pitch Battle - Seattle",
+    "start-time": "2025-05-02T17:00:00.000-07:00",
+    "end-time": "2025-05-02T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025050217"
+  },
+  {
+    "title": "First Ever Microsoft Fabric Tour",
+    "start-time": "2025-05-31T09:00:00.000-07:00",
+    "end-time": "2025-05-31T18:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/307055717"
+  },
+  {
+    "title": "Seattle Code & Coffee @ Capital One Café",
+    "start-time": "2025-04-12T12:00:00.000-07:00",
+    "end-time": "2025-04-12T15:00:00.000-07:00",
+    "location": "Capital One Café",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-code-and-coffee/events/307004851"
   }
 ]
