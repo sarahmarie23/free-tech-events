@@ -614,5 +614,126 @@
     ],
     "food": "No",
     "link": "https://www.meetup.com/producttank-seattle/events/306306318"
+  },
+  {
+    "title": "Open Source AI Hackathon #16 - AI Agents",
+    "start-time": "2025-04-19T09:00:00.000-07:00",
+    "end-time": "2025-04-19T18:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/ln0ps5rv"
+  },
+  {
+    "title": "Open Source AI Hackathon #17 - AI Agents",
+    "start-time": "2025-05-10T09:00:00.000-07:00",
+    "end-time": "2025-05-10T18:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/1gksk4p8"
+  },
+  {
+    "title": "Open Source AI Hackathon #17 - AI Agents",
+    "start-time": "2025-06-21T09:00:00.000-07:00",
+    "end-time": "2025-06-21T18:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://lu.ma/m5p440az"
+  },
+  {
+    "title": "SREday - Seattle/Redmond",
+    "start-time": "2025-04-14T09:00:00.000-07:00",
+    "end-time": "2025-04-14T17:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/306109844/"
+  },
+  {
+    "title": "Innovate QA: Plug-n-Play – Valet All Day",
+    "start-time": "2025-05-22T16:30:00.000-07:00",
+    "end-time": "2025-05-22T19:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/307073265"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-04-17T18:30:00.000-07:00",
+    "end-time": "2025-04-17T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/306266148"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-05-15T18:30:00.000-07:00",
+    "end-time": "2025-05-15T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/bldfxsyhchbtb"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-06-19T18:30:00.000-07:00",
+    "end-time": "2025-06-19T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/bldfxsyhcjbzb"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-07-17T18:30:00.000-07:00",
+    "end-time": "2025-07-17T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/bldfxsyhckbwb"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-08-21T18:30:00.000-07:00",
+    "end-time": "2025-08-21T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/306623706"
+  },
+  {
+    "title": "Big Data, from technology to business potential",
+    "start-time": "2025-09-18T18:30:00.000-07:00",
+    "end-time": "2025-09-18T19:30:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Big Data Bellevue"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-bellevue-bdb/events/bldfxsyhcmbxb"
   }
 ]
