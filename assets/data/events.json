@@ -735,5 +735,27 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/big-data-bellevue-bdb/events/bldfxsyhcmbxb"
+  },
+  {
+    "title": "AI meetup (Seattle): GenAI, LLMs, and Agent",
+    "start-time": "2025-05-06T17:00:00.000-07:00",
+    "end-time": "2025-05-06T20:00:00.000-07:00",
+    "location": "GitHub Bellevue",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025050617"
+  },
+  {
+    "title": "Seattle Code & Coffee @ Capital One Café",
+    "start-time": "2025-05-10T12:00:00.000-07:00",
+    "end-time": "2025-05-10T15:00:00.000-07:00",
+    "location": "Capital One Café",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-code-and-coffee/events/307315159"
   }
 ]
