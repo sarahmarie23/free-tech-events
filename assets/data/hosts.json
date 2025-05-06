@@ -50,5 +50,9 @@
     {
         "name": "ProductTank Seattle",
         "image": "public/images/producttank-seattle.jpg"
+    },
+    {
+        "name": "Docker",
+        "image": "public/images/docker.png"
     }
 ]

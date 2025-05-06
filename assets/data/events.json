@@ -757,5 +757,38 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/307315159"
+  },
+  {
+    "title": "Apache Iceberg™ Community Meetup 💙🧊🏔",
+    "start-time": "2025-05-06T16:30:00.000-07:00",
+    "end-time": "2025-05-06T19:30:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Seattle Spark+AI Meetup"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-spark-meetup/events/307571172"
+  },
+  {
+    "title": "Docker’s MCP at MOPOP",
+    "start-time": "2025-05-19T19:00:00.000-07:00",
+    "end-time": "2025-05-19T22:00:00.000-07:00",
+    "location": "Museum of Pop Culture Seattle (MoPOP)",
+    "hosts": [
+      "Docker"
+    ],
+    "food": "Yes",
+    "link": "https://www.docker.com/c/mcp-at-mopop/"
+  },
+  {
+    "title": "MIND and TECH : Harnessing Technology and Embracing Wellness",
+    "start-time": "2025-06-17T16:30:00.000-07:00",
+    "end-time": "2025-06-17T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/307533670"
   }
 ]
