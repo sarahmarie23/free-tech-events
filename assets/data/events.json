@@ -790,5 +790,71 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/big-data-ai-seattle/events/307533670"
+  },
+  {
+    "title": "Seattle Java User Group Meetup - May",
+    "start-time": "2025-05-22T18:00:00.000-07:00",
+    "end-time": "2025-05-22T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Microsoft Reactor Redmond"
+    ],
+    "food": "No",
+    "link": "https://www.meetup.com/microsoft-reactor-redmond/events/307567485/"
+  },
+  {
+    "title": "Seattle Code & Coffee @ Capital One Café",
+    "start-time": "2025-06-07T12:00:00.000-07:00",
+    "end-time": "2025-06-07T15:00:00.000-07:00",
+    "location": "Capital One Café",
+    "hosts": [
+      "Seattle Code and Coffee"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/seattle-code-and-coffee/events/307861673/"
+  },
+  {
+    "title": "AI Ignite Pitch Battle - Seattle",
+    "start-time": "2025-05-21T17:00:00.000-07:00",
+    "end-time": "2025-05-21T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025050217"
+  },
+  {
+    "title": "AI Meetup (June) for GenAI, LLMs and Agent",
+    "start-time": "2025-06-03T17:00:00.000-07:00",
+    "end-time": "2025-06-03T20:00:00.000-07:00",
+    "location": "GitHub Bellevue",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/aittg-seattle/events/307756608/"
+  },
+  {
+    "title": "AI Unleashed: From Digital Twins to Data Integrity – A Deep Dive into the Future",
+    "start-time": "2025-08-19T16:30:00.000-07:00",
+    "end-time": "2025-08-19T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/307723845/"
+  },
+  {
+    "title": "AI with a Conscience: The Ethical Frontier and Battling Adversarial Attacks",
+    "start-time": "2025-07-15T16:30:00.000-07:00",
+    "end-time": "2025-07-15T20:00:00.000-07:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/307723760/"
   }
 ]
