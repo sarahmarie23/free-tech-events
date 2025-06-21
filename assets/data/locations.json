@@ -58,5 +58,9 @@
     {
         "name": "Museum of Pop Culture Seattle (MoPOP)",
         "address": "325 5th Ave N · Seattle, WA 98109"
+    },
+    {
+        "name": "Bullitt Center",
+        "address": "1501 E Madison St · Seattle, WA 98122"
     }
 ]
