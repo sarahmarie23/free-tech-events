@@ -878,5 +878,27 @@
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025070117"
+  },
+  {
+    "title": "AI Northwest: Coffee Social",
+    "start-time": "2025-10-04T09:00:00.000-07:00",
+    "end-time": "2025-10-04T11:00:00.000-07:00",
+    "location": "Armistice Coffee",
+    "hosts": [
+      "AI Northwest"
+    ],
+    "food": "No",
+    "link": "https://luma.com/quutsq5o"
+  },
+  {
+    "title": "AI Northwest: Coffee Social",
+    "start-time": "2025-12-06T09:00:00.000-08:00",
+    "end-time": "2025-12-06T11:00:00.000-08:00",
+    "location": "Armistice Coffee",
+    "hosts": [
+      "AI Northwest"
+    ],
+    "food": "No",
+    "link": "https://luma.com/sphqghl8"
   }
 ]
