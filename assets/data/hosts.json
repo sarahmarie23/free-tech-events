@@ -54,5 +54,9 @@
     {
         "name": "Docker",
         "image": "public/images/docker.png"
+    },
+    {
+        "name": "AI Northwest",
+        "image": "public/images/ainw.png"
     }
 ]
