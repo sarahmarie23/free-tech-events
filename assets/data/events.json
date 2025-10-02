@@ -977,5 +977,16 @@
     ],
     "food": "Yes",
     "link": "https://www.meetup.com/seattle-code-and-coffee/events/311292806/"
+  },
+  {
+    "title": "Hackathon | Humans & AI | FREE | Oct 4 | In-Person | Bellevue City Hall",
+    "start-time": "2025-10-04T09:00:00.000-07:00",
+    "end-time": "2025-10-04T18:00:00.000-07:00",
+    "location": "Bellevue City Hall",
+    "hosts": [
+      "Seattle Data, AI & Security"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/big-data-ai-seattle/events/311049330/"
   }
 ]
