@@ -74,5 +74,9 @@
     {
         "name": "Bellevue City Hall",
         "address": "450 110th Ave Ne · Bellevue, WA 98004"
+    },
+    {
+        "name": "Google Fremont",
+        "address": "601 N 34th St · Seattle, WA 98103"
     }
 ]
