@@ -999,5 +999,115 @@
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025110417"
+  },
+  {
+    "title": "DevFest Seattle 2025",
+    "start-time": "2025-11-18T08:00:00.000-08:00",
+    "end-time": "2025-11-18T17:00:00.000-08:00",
+    "location": "TBD",
+    "hosts": [
+      "GDG"
+    ],
+    "food": "Yes",
+    "link": "https://gdg.community.dev/events/details/google-gdg-seattle-presents-devfest-seattle-2025/"
+  },
+  {
+    "title": "Open Source AI Hackathon #22 - AI Agents",
+    "start-time": "2025-10-11T09:00:00.000-07:00",
+    "end-time": "2025-10-11T18:00:00.000-07:00",
+    "location": "UW CoMotion",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/5fudx00r"
+  },
+  {
+    "title": "Vibe Code --> Production",
+    "start-time": "2025-10-22T17:00:00.000-07:00",
+    "end-time": "2025-10-22T21:00:00.000-07:00",
+    "location": "Edge Delta",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "No",
+    "link": "https://luma.com/u6sxpqwm"
+  },
+  {
+    "title": "AI Hackathon - Build w/ Lovable",
+    "start-time": "2025-10-26T10:00:00.000-07:00",
+    "end-time": "2025-10-26T18:00:00.000-07:00",
+    "location": "Foundations",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "No",
+    "link": "https://luma.com/6utwyfkz"
+  },
+  {
+    "title": "Vibe Code Hack Night - Bellevue w/ Modin",
+    "start-time": "2025-10-28T17:30:00.000-07:00",
+    "end-time": "2025-10-28T20:30:00.000-07:00",
+    "location": "Snowflake",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "No",
+    "link": "https://luma.com/usaf34ae"
+  },
+  {
+    "title": "Open Source AI Hackathon #23 - AI Agents",
+    "start-time": "2025-11-15T09:00:00.000-08:00",
+    "end-time": "2025-11-15T18:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/uvciivjz"
+  },
+  {
+    "title": "Open Source AI Hackathon #24 - AI Agents",
+    "start-time": "2025-12-13T09:00:00.000-08:00",
+    "end-time": "2025-12-13T18:00:00.000-08:00",
+    "location": "Microsoft Reactor Redmond",
+    "hosts": [
+      "Open Source for AI"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/b575c5xg"
+  },
+  {
+    "title": "Code Katas with Seattle JS Hackers",
+    "start-time": "2025-10-21T17:30:00.000-07:00",
+    "end-time": "2025-10-21T20:00:00.000-07:00",
+    "location": "AWS Skills Center - Kumo",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/kq0tk8rt"
+  },
+  {
+    "title": "Code Katas with Seattle JS Hackers",
+    "start-time": "2025-11-18T17:30:00.000-08:00",
+    "end-time": "2025-11-18T20:00:00.000-08:00",
+    "location": "AWS Skills Center - Kumo",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/19zuyon1"
+  },
+  {
+    "title": "Code Katas with Seattle JS Hackers",
+    "start-time": "2025-12-16T17:30:00.000-08:00",
+    "end-time": "2025-12-16T20:00:00.000-08:00",
+    "location": "AWS Skills Center - Kumo",
+    "hosts": [
+      "SeattleJS"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/55b10d5i"
   }
 ]
