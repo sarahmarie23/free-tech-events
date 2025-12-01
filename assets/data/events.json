@@ -1109,5 +1109,27 @@
     ],
     "food": "Yes",
     "link": "https://luma.com/55b10d5i"
+  },
+  {
+    "title": "AI meetup (Seattle): GenAI, LLMs, and Agents",
+    "start-time": "2025-12-09T17:00:00.000-08:00",
+    "end-time": "2025-12-09T20:00:00.000-08:00",
+    "location": "GitHub Bellevue",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025120917"
+  },
+  {
+    "title": "Agentic AI Builder Lab with Google (Seattle)",
+    "start-time": "2025-12-10T17:00:00.000-08:00",
+    "end-time": "2025-12-10T20:30:00.000-08:00",
+    "location": "Startup Hall / Condon Hall",
+    "hosts": [
+      "AI Camp Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.aicamp.ai/event/eventdetails/W2025121017"
   }
 ]
