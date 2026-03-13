@@ -1142,5 +1142,16 @@
     ],
     "food": "Yes",
     "link": "https://luma.com/NVIDIASeattlemeetup"
+  },
+  {
+    "title": "Arize Builders Meetup - Seattle - Boosting Claude Code performance with prompt learning",
+    "start-time": "2026-04-02T18:00:00.000-07:00",
+    "end-time": "2026-04-02T21:00:00.000-07:00",
+    "location": "The Collective Seattle",
+    "hosts": [
+      "Arize AI"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/lu0jkcst"
   }
 ]

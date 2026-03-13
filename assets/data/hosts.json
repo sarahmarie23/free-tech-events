@@ -62,5 +62,9 @@
     {
         "name": "NVIDIA",
         "image": "public/images/nvidia.png"
+    },
+    {
+        "name": "Arize AI",
+        "image": "public/images/ariseai.png"
     }
 ]
