@@ -1131,5 +1131,16 @@
     ],
     "food": "Yes",
     "link": "https://www.aicamp.ai/event/eventdetails/W2025121017"
+  },
+  {
+    "title": "NVIDIA Developer Meetup | Seattle Edition",
+    "start-time": "2026-03-31T18:00:00.000-07:00",
+    "end-time": "2026-03-31T21:00:00.000-07:00",
+    "location": "Sheraton Grand Seattle",
+    "hosts": [
+      "NVIDIA"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/NVIDIASeattlemeetup"
   }
 ]
