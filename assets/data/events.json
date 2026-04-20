@@ -1153,5 +1153,38 @@
     ],
     "food": "Yes",
     "link": "https://luma.com/lu0jkcst"
+  },
+  {
+    "title": "Beyond Software Optimizations: Breaking 100us Barrier in EC2",
+    "start-time": "2026-04-30T17:00:00.000-07:00",
+    "end-time": "2026-04-30T19:00:00.000-07:00",
+    "location": "Slalom Hawk Tower",
+    "hosts": [
+      "AWS User Group Seattle"
+    ],
+    "food": "Yes",
+    "link": "https://www.meetup.com/aws-seattle-officialevents/events/314340264/"
+  },
+  {
+    "title": "Agentic + AI Observability Meetup Seattle",
+    "start-time": "2026-04-22T17:00:00.000-07:00",
+    "end-time": "2026-04-22T20:30:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Agentic + AI Observability"
+    ],
+    "food": "No",
+    "link": "https://luma.com/AgenticAIObservability_SEA"
+  },
+  {
+    "title": "Agentic + AI Observability Meetup Seattle",
+    "start-time": "2026-05-19T17:00:00.000-07:00",
+    "end-time": "2026-05-19T20:30:00.000-07:00",
+    "location": "Databricks Bellevue",
+    "hosts": [
+      "Agentic + AI Observability"
+    ],
+    "food": "No",
+    "link": "https://luma.com/Agentic_AI_5-19"
   }
 ]

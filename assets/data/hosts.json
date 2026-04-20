@@ -70,5 +70,9 @@
     {
         "name": "AWS User Group Seattle",
         "image": "public/images/awsugs.png"
+    },
+    {
+        "name": "Agentic + AI Observability",
+        "image": "public/images/agenticaiobs.png"
     }
 ]
