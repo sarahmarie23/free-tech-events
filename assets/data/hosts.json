@@ -66,5 +66,9 @@
     {
         "name": "Arize AI",
         "image": "public/images/arizeai.png"
+    },
+    {
+        "name": "AWS User Group Seattle",
+        "image": "public/images/awsugs.png"
     }
 ]
