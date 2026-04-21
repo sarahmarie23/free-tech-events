@@ -74,5 +74,9 @@
     {
         "name": "Agentic + AI Observability",
         "image": "public/images/agenticaiobs.png"
+    },
+    {
+        "name": "MotherDuck",
+        "image": "public/images/motherduck.png"
     }
 ]

@@ -1186,5 +1186,16 @@
     ],
     "food": "No",
     "link": "https://luma.com/Agentic_AI_5-19"
+  },
+  {
+    "title": "High-Performance Data Workflows with Python and DuckDB [PyData x MotherDuck]",
+    "start-time": "2026-04-30T17:30:00.000-07:00",
+    "end-time": "2026-04-30T20:30:00.000-07:00",
+    "location": "MotherDuck",
+    "hosts": [
+      "MotherDuck"
+    ],
+    "food": "No",
+    "link": "https://luma.com/motherduck-pydata"
   }
 ]
