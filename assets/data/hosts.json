@@ -78,5 +78,9 @@
     {
         "name": "MotherDuck",
         "image": "public/images/motherduck.png"
+    },
+    {
+        "name": "She Ships SaaS",
+        "image": "public/images/sheshipssaas.png"
     }
 ]

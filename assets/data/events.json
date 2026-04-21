@@ -1197,5 +1197,16 @@
     ],
     "food": "No",
     "link": "https://luma.com/motherduck-pydata"
+  },
+  {
+    "title": "The Shipyard x Lovable: Build Day",
+    "start-time": "2026-05-09T10:30:00.000-07:00",
+    "end-time": "2026-05-09T16:30:00.000-07:00",
+    "location": "Blueprint",
+    "hosts": [
+      "She Ships SaaS"
+    ],
+    "food": "Yes",
+    "link": "https://luma.com/swjc8x3b"
   }
 ]
