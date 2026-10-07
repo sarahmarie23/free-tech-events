@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Tech Events - Admin Portal</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; background-color: #f8f9fa; color: #333; }
+    .card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .hidden { display: none !important; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 6px; }
+    .badge-warn { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .btn { padding: 10px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; margin-right: 8px; }
+    .btn-google { background-color: #4285f4; color: white; }
+    .btn-approve { background-color: #28a745; color: white; }
+    .btn-reject { background-color: #dc3545; color: white; }
+    .btn-logout { background-color: #6c757d; color: white; padding: 6px 12px; font-size: 12px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. LOGIN SECTION -->
+  <div id="login-section" class="card" style="text-align: center; padding: 40px 20px;">
+    <h1>Free Tech Events Admin</h1>
+    <p>Sign in with your authorized Google account to manage staged events.</p>
+    <br>
+    <button id="google-signin-btn" class="btn btn-google">🔑 Sign in with Google</button>
+    <p id="login-error" style="color: red; margin-top: 15px;"></p>
+  </div>
+
+  <!-- 2. PROTECTED ADMIN DASHBOARD -->
+  <div id="admin-dashboard" class="hidden">
+    <div class="header">
+      <div>
+        <h2>Event Review Queue</h2>
+        <p style="margin: 0; color: #666; font-size: 14px;">Logged in as: <strong id="user-email"></strong></p>
+      </div>
+      <button id="logout-btn" class="btn btn-logout">Log Out</button>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e0e0e0; margin-bottom: 20px;">
+
+    <div id="staging-list">Loading pending events...</div>
+  </div>
+
+  <!-- Firebase Modular SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+      getFirestore, collection, getDocs, doc, deleteDoc, addDoc 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // YOUR FIREBASE CONFIGURATION (PASTED FROM CONSOLE)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqa2zIKq_GA5ACE8qp-taKMLU7stXrzmY",
+      authDomain: "restaurants-67778.firebaseapp.com",
+      databaseURL: "https://restaurants-67778-default-rtdb.firebaseio.com",
+      projectId: "restaurants-67778",
+      storageBucket: "restaurants-67778.firebasestorage.app",
+      messagingSenderId: "38103019119",
+      appId: "1:38103019119:web:6172403fca7fc0f339e79a"
+    };
+
+    // Initialize Firebase Services
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    // DOM Elements
+    const loginSection = document.getElementById("login-section");
+    const adminDashboard = document.getElementById("admin-dashboard");
+    const googleBtn = document.getElementById("google-signin-btn");
+    const loginError = document.getElementById("login-error");
+    const stagingList = document.getElementById("staging-list");
+
+    // AUTHENTICATION STATE OBSERVER
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginSection.classList.add("hidden");
+        adminDashboard.classList.remove("hidden");
+        document.getElementById("user-email").textContent = user.email;
+        loadStagedEvents();
+      } else {
+        loginSection.classList.remove("hidden");
+        adminDashboard.classList.add("hidden");
+      }
+    });
+
+    // GOOGLE SIGN-IN HANDLER
+    googleBtn.addEventListener("click", async () => {
+      loginError.textContent = "";
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        loginError.textContent = "Sign in failed: " + err.message;
+      }
+    });
+
+    // LOGOUT HANDLER
+    document.getElementById("logout-btn").addEventListener("click", () => signOut(auth));
+
+    // FETCH & RENDER STAGED EVENTS FROM FIRESTORE
+    async function loadStagedEvents() {
+      stagingList.innerHTML = "<p>Fetching pending events...</p>";
+      try {
+        const querySnapshot = await getDocs(collection(db, "staging_events"));
+        
+        if (querySnapshot.empty) {
+          stagingList.innerHTML = "<div class='card'><p>🎉 All caught up! No pending events in staging.</p></div>";
+          return;
+        }
+
+        stagingList.innerHTML = "";
+        querySnapshot.forEach((docSnap) => {
+          const item = docSnap.data();
+          const id = docSnap.id;
+          
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3 style="margin-top:0;">${item.title || "Untitled Event"}</h3>
+            <p>📅 <strong>Date/Time:</strong> ${item["start-time"] || "N/A"} to ${item["end-time"] || "N/A"}</p>
+            <p>📍 <strong>Location:</strong> ${item.location || "Unspecified"} ${item.is_new_location ? '<span class="badge badge-warn">⚠️ NEW LOCATION</span>' : ''}</p>
+            <p>👤 <strong>Host:</strong> ${item.hosts ? item.hosts.join(", ") : "N/A"} ${item.is_new_host ? '<span class="badge badge-danger">⚠️ NEW HOST</span>' : ''}</p>
+            <p>🍕 <strong>Food:</strong> ${item.food || "Unspecified"} ${item.food === "Unspecified" ? '<span class="badge badge-warn">❓ Check link</span>' : ''}</p>
+            <p>🔗 <a href="${item.link}" target="_blank">View Original Event Page</a></p>
+            
+            <div style="margin-top: 20px;">
+              <button class="btn btn-approve" onclick="approveEvent('${id}')">Approve & Publish</button>
+              <button class="btn btn-reject" onclick="rejectEvent('${id}', '${(item.title || "").replace(/'/g, "\\'")}')">Reject</button>
+            </div>
+          `;
+          stagingList.appendChild(card);
+        });
+      } catch (error) {
+        stagingList.innerHTML = `<p style="color:red;">Error loading staging collection: ${error.message}</p>`;
+      }
+    }
+
+    // APPROVE & MOVE EVENT TO LIVE
+    window.approveEvent = async (id) => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "staging_events"));
+        const targetDoc = querySnapshot.docs.find(d => d.id === id);
+        if (!targetDoc) return;
+
+        const data = targetDoc.data();
+        delete data.is_new_host;
+        delete data.is_new_location;
+
+        // Add to live events collection
+        await addDoc(collection(db, "events"), data);
+        // Remove from staging
+        await deleteDoc(doc(db, "staging_events", id));
+        
+        loadStagedEvents();
+      } catch (err) {
+        alert("Error approving event: " + err.message);
+      }
+    };
+
+    // REJECT & LOG FEEDBACK
+    window.rejectEvent = async (id, title) => {
+      const reason = prompt(`Reason for rejecting "${title}"? (Used to improve AI parsing):`);
+      if (reason === null) return;
+
+      try {
+        // Save rejection reason for future AI context
+        await addDoc(collection(db, "rejection_log"), {
+          title,
+          reason,
+          timestamp: new Date().toISOString()
+        });
+
+        // Delete from staging
+        await deleteDoc(doc(db, "staging_events", id));
+
+        loadStagedEvents();
+      } catch (err) {
+        alert("Error rejecting event: " + err.message);
+      }
+    };
+  </script>
+</body>
+</html>
