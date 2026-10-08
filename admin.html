@@ -55,22 +55,19 @@
       getFirestore, collection, getDocs, doc, deleteDoc, addDoc 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // YOUR FIREBASE CONFIGURATION (PASTED FROM CONSOLE)
-    const firebaseConfig = {
-      apiKey: "AIzaSyBqa2zIKq_GA5ACE8qp-taKMLU7stXrzmY",
-      authDomain: "restaurants-67778.firebaseapp.com",
-      databaseURL: "https://restaurants-67778-default-rtdb.firebaseio.com",
-      projectId: "restaurants-67778",
-      storageBucket: "restaurants-67778.firebasestorage.app",
-      messagingSenderId: "38103019119",
-      appId: "1:38103019119:web:6172403fca7fc0f339e79a"
-    };
+    // Firebase configuration
+    import { firebaseConfig } from "./firebase-config.js";
 
     // Initialize Firebase Services
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
+
+    // FORCE ACCOUNT SELECTION PROMPT EVERY TIME(remove after testing)
+    provider.setCustomParameters({
+        prompt: 'select_account'
+    });
 
     // DOM Elements
     const loginSection = document.getElementById("login-section");
