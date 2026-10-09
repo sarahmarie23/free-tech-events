@@ -2,22 +2,23 @@
 import { GoogleGenAI } from '@google/genai';
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return res.status(500).json({ error: 'Configuration Error: GEMINI_API_KEY environment variable is missing.' });
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const ai = new GoogleGenAI({ apiKey });
-    const { emailBody, subject } = req.body;
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'Server configuration error: GEMINI_API_KEY is missing in Vercel settings.' });
+    }
 
+    const { emailBody, subject } = req.body || {};
     if (!emailBody) {
       return res.status(400).json({ error: 'Missing emailBody in request body.' });
     }
+
+    // Initialize inside handler to catch any instantiation errors safely
+    const ai = new GoogleGenAI({ apiKey });
 
     const prompt = `
 You are an expert event data extractor for a local tech events directory. 
@@ -39,7 +40,7 @@ ${emailBody}
     `;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -57,10 +58,10 @@ ${emailBody}
     });
 
   } catch (error) {
-    console.error('CRITICAL PARSE ERROR:', error);
+    console.error('CRITICAL FUNCTION EXCEPTION:', error);
     return res.status(500).json({ 
-      error: 'Failed to parse email content.', 
-      details: error.toString(),
+      error: 'Function execution failed', 
+      message: error.message,
       stack: error.stack 
     });
   }
