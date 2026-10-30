@@ -2,3 +2,6 @@ approved-users.js
 node_modules
 .vercel
 .env*
+service-account.json
+
+/freetechevents-worker-git-backup/
