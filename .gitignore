@@ -5,3 +5,6 @@ node_modules
 service-account.json
 
 /freetechevents-worker-git-backup/
+
+# Local backups
+/admin-backup.html
