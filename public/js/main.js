@@ -1,7 +1,50 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+import { firebaseConfig } from "/firebase-config.js";
+
+import {
+  getStorage,
+  ref,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
 // Load hosts and events data
 Promise.all([
-  fetch("/assets/data/hosts.json").then((res) => res.json()),
-  fetch("/assets/data/events.json").then((res) => res.json())
+  getDocs(collection(db, "hosts")).then(async (snapshot) => {
+    return Promise.all(snapshot.docs.map(async (doc) => {
+      const host = doc.data();
+
+      if (host.storagePath) {
+        try {
+          host.image = await getDownloadURL(
+            ref(storage, host.storagePath)
+          );
+        } catch (error) {
+          console.warn(`Could not load logo for ${host.name}`, error);
+          // Keep original image path as fallback
+        }
+      }
+
+      return {
+        ...host,
+        id: doc.id
+      };
+    }));
+  }),
+
+  getDocs(collection(db, "events")).then((snapshot) =>
+    snapshot.docs.map((doc) => doc.data())
+  )
 ]).then(([hostsData, events]) => {
   console.log("Hosts Data:", hostsData);
   console.log("Events Data:", events);
@@ -61,11 +104,22 @@ Promise.all([
 
 // Gets called once for upcoming events and then again for past events
 function createAndAppendEventItem(event, hostsData, eventList) {
-  const hostImages = event.hosts.map((hostName) => {
-    const matchingHost = hostsData.find((host) => host.name === hostName);
-    return matchingHost ? 
-      `<img src="${matchingHost.image}" alt="${hostName}" class="host-image">` : 
-      `<img src="/not-found.webp" alt="Default Host" class="host-image">`;
+  const hostImages = (event.hosts || []).map((eventHost) => {
+    // Support both old string names and new host objects
+    const hostName = typeof eventHost === "string"
+      ? eventHost
+      : eventHost.displayName;
+
+    const matchingHost = typeof eventHost === "string"
+      ? hostsData.find(host =>
+          host.name === hostName ||
+          (host.aliases || []).includes(hostName)
+        )
+      : hostsData.find(host => host.id === eventHost.id);
+
+    const image = matchingHost?.image || "/images/not-found.webp";
+
+    return `<img src="${image}" alt="${hostName}" class="host-image">`;
   }).join('');
 
   const formattedDate = formatEventDate(event["start-time"]);
@@ -76,6 +130,11 @@ function createAndAppendEventItem(event, hostsData, eventList) {
   const eventItem = document.createElement("li");
   eventItem.className = "event-card";
 
+  // Support both old string locations and new location objects
+const locationName = typeof event.location === "string"
+  ? event.location
+  : event.location?.displayName || "TBD";
+
   eventItem.innerHTML = `
   <div class="host-images">
   ${hostImages}
@@ -84,7 +143,7 @@ function createAndAppendEventItem(event, hostsData, eventList) {
   <strong class="event-title">${event.title}</strong>
   📅 ${formattedDate}<br> 
   ⏰ ${formattedStartTime} - ${formattedEndTime}<br>
-  <span class="event-location">📍 <em>${event.location}</em></span>
+  <span class="event-location">📍 <em>${locationName}</em></span>
   🍕 Food: ${formattedFood} 
   <a href="${event.link}" class="event-link" target="_blank">More Info</a>
     </div>

@@ -124,6 +124,25 @@
     justify-content: center;
   }
 }
+
+/* Admin host search results */
+.host-search-results {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.host-search-results button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Disabled approval button */
+.btn-approve:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 /*
 #event-list li {
   margin-bottom: 20px;

@@ -18,6 +18,7 @@
     .btn-logout { background-color: #6c757d; color: white; padding: 6px 12px; font-size: 12px; }
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   </style>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -52,7 +53,7 @@
       getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { 
-      getFirestore, collection, getDocs, doc, deleteDoc, addDoc 
+      getFirestore, collection, getDocs, getDoc, doc, deleteDoc, addDoc, writeBatch, arrayUnion 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     // Firebase configuration
@@ -77,17 +78,38 @@
     const stagingList = document.getElementById("staging-list");
 
     // AUTHENTICATION STATE OBSERVER
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        loginSection.classList.add("hidden");
-        adminDashboard.classList.remove("hidden");
-        document.getElementById("user-email").textContent = user.email;
-        loadStagedEvents();
-      } else {
-        loginSection.classList.remove("hidden");
-        adminDashboard.classList.add("hidden");
-      }
-    });
+
+onAuthStateChanged(auth, async (user) => {
+  // Hide dashboard until permissions are verified
+  adminDashboard.classList.add("hidden");
+
+  if (!user) {
+    loginSection.classList.remove("hidden");
+    return;
+  }
+
+  try {
+    // Check the user's role in Firestore
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+
+    if (userDoc.exists() && userDoc.data().role === "admin") {
+      loginError.textContent = "";
+      loginSection.classList.add("hidden");
+      adminDashboard.classList.remove("hidden");
+
+      document.getElementById("user-email").textContent = user.email;
+      loadStagedEvents();
+    } else {
+      await signOut(auth);
+      loginSection.classList.remove("hidden");
+      loginError.textContent = "This account is not authorized.";
+    }
+  } catch (error) {
+    loginSection.classList.remove("hidden");
+    loginError.textContent = "Unable to verify admin access: " + error.message;
+  }
+});
+
 
     // GOOGLE SIGN-IN HANDLER
     googleBtn.addEventListener("click", async () => {
@@ -102,6 +124,116 @@
     // LOGOUT HANDLER
     document.getElementById("logout-btn").addEventListener("click", () => signOut(auth));
 
+    function normalizeName(name) {
+      return (name || "")
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]/gu, "");
+    }
+
+    async function findMatchingLocation(extractedName) {
+      const snapshot = await getDocs(collection(db, "locations"));
+      const searchName = normalizeName(extractedName);
+
+      for (const locationDoc of snapshot.docs) {
+        const location = locationDoc.data();
+
+        const knownNames = [
+          location.name,
+          ...(location.aliases || [])
+        ];
+
+        if (knownNames.some(name =>
+          normalizeName(name) === searchName
+        )) {
+          return {
+            id: locationDoc.id,
+            ...location
+          };
+        }
+      }
+
+      return null;
+    }
+
+    async function findMatchingHost(extractedName) {
+      const snapshot = await getDocs(collection(db, "hosts"));
+      const searchName = normalizeName(extractedName);
+
+      for (const hostDoc of snapshot.docs) {
+        const host = hostDoc.data();
+
+        const knownNames = [
+          host.name,
+          ...(host.aliases || [])
+        ];
+
+        if (knownNames.some(name =>
+          normalizeName(name) === searchName
+        )) {
+          return {
+            id: hostDoc.id,
+            ...host
+          };
+        }
+      }
+
+      return null;
+    }
+
+    async function searchHosts(searchText) {
+
+      const queryText = normalizeName(searchText);
+
+      const snapshot = await getDocs(collection(db, "hosts"));
+
+      return snapshot.docs
+        .map(docSnap => ({
+          id: docSnap.id,
+          ...docSnap.data()
+        }))
+        .filter(host =>
+          [host.name, ...(host.aliases || [])]
+            .some(name => normalizeName(name).includes(queryText))
+        )
+        .slice(0, 10);
+    }
+
+    async function searchLocations(searchText) {
+      const queryText = normalizeName(searchText);
+
+      const snapshot = await getDocs(collection(db, "locations"));
+
+      return snapshot.docs
+        .map(docSnap => ({
+          id: docSnap.id,
+          ...docSnap.data()
+        }))
+        .filter(location =>
+          [location.name, ...(location.aliases || [])]
+            .some(name => normalizeName(name).includes(queryText))
+        )
+        .slice(0, 10);
+    }
+    
+    async function resolveEventHosts(hostNames) {
+      const resolvedHosts = [];
+
+      for (const name of hostNames) {
+        const match = await findMatchingHost(name);
+
+        if (!match) {
+          throw new Error(`Host needs review: ${name}`);
+        }
+
+        resolvedHosts.push({
+          id: match.id,
+          displayName: name
+        });
+      }
+
+      return resolvedHosts;
+    }
+
     // FETCH & RENDER STAGED EVENTS FROM FIRESTORE
     async function loadStagedEvents() {
       stagingList.innerHTML = "<p>Fetching pending events...</p>";
@@ -114,53 +246,585 @@
         }
 
         stagingList.innerHTML = "";
-        querySnapshot.forEach((docSnap) => {
+        for (const docSnap of querySnapshot.docs) {
           const item = docSnap.data();
           const id = docSnap.id;
+
+          const locationMatch = item.location
+            ? await findMatchingLocation(item.location)
+            : null;
+
+          const needsLocationReview = !locationMatch;
+
+          const hostMatches = await Promise.all(
+            (item.hosts || []).map(async (name) => ({
+              extractedName: name,
+              match: await findMatchingHost(name)
+            }))
+          );
+
+          const needsHostReview =
+          hostMatches.length === 0 ||
+          hostMatches.some(({ match }) => !match);
           
           const card = document.createElement("div");
           card.className = "card";
+          card.dataset.eventId = id;
           card.innerHTML = `
             <h3 style="margin-top:0;">${item.title || "Untitled Event"}</h3>
             <p>📅 <strong>Date/Time:</strong> ${item["start-time"] || "N/A"} to ${item["end-time"] || "N/A"}</p>
-            <p>📍 <strong>Location:</strong> ${item.location || "Unspecified"} ${item.is_new_location ? '<span class="badge badge-warn">⚠️ NEW LOCATION</span>' : ''}</p>
-            <p>👤 <strong>Host:</strong> ${item.hosts ? item.hosts.join(", ") : "N/A"} ${item.is_new_host ? '<span class="badge badge-danger">⚠️ NEW HOST</span>' : ''}</p>
+
+<div class="location-review-row"
+     data-extracted-name="${item.location || ""}">
+
+  <p>
+    📍 <strong>Location:</strong> ${item.location || "Unspecified"}
+
+    ${locationMatch
+      ? `<span class="badge" style="background:#d4edda;color:#155724;">
+          ✓ Matched: ${locationMatch.name}
+        </span>`
+      : `<span class="badge badge-warn location-review-status">
+          ⚠️ Needs location review
+        </span>`
+    }
+  </p>
+
+      ${!locationMatch ? `
+        <input
+          type="search"
+          class="location-match-search"
+          placeholder="Search existing locations..."
+          autocomplete="off"
+        >
+
+        <div class="location-search-results"></div>
+
+        <label class="location-alias-option" style="display:none;">
+          <input type="checkbox" class="location-alias-checkbox">
+          Add extracted name as an alias
+        </label>
+
+        <button type="button" class="mark-new-location">
+          + Create New Location
+        </button>
+        <div class="new-location-fields" style="display:none;">
+          <label>
+            Address:
+            <input
+              type="text"
+              class="new-location-address"
+              placeholder="Street address, city, state, ZIP"
+            >
+          </label>
+        </div>
+      ` : ""}
+
+    </div>
+
+          <p>👤 <strong>Hosts:</strong></p>
+          ${hostMatches.map(({ extractedName, match }) => `
+            <div class="host-review-row" data-extracted-name="${extractedName}" style="margin-left: 15px;">
+              ${extractedName}
+              ${match
+                ? `<span class="badge" style="background:#d4edda;color:#155724;">
+                    ✓ Matched: ${match.name}
+                  </span>`
+                : `<span class="badge badge-warn host-review-status">
+                    ⚠️ Needs host review
+                  </span>
+                  <input
+                    type="search"
+                    class="host-match-search"
+                    placeholder="Search existing hosts..."
+                    autocomplete="off"
+                  >
+                  <div class="host-search-results"></div>
+                  <label class="host-alias-option" style="display: none;">
+                    <input type="checkbox" class="host-alias-checkbox">
+                    Add extracted name as an alias
+                  </label>
+                  <button type="button" class="mark-new-host">
+                    + Create New Host
+                  </button>
+                  `
+              }
+            </div>
+          `).join("")}
             <p>🍕 <strong>Food:</strong> ${item.food || "Unspecified"} ${item.food === "Unspecified" ? '<span class="badge badge-warn">❓ Check link</span>' : ''}</p>
             <p>🔗 <a href="${item.link}" target="_blank">View Original Event Page</a></p>
             
-            <div style="margin-top: 20px;">
-              <button class="btn btn-approve" onclick="approveEvent('${id}')">Approve & Publish</button>
+            <div style="margin-top: 20px;">              
+            <button
+              class="btn btn-approve"
+              onclick="approveEvent('${id}')"
+              ${(needsHostReview || needsLocationReview)
+                ? 'disabled title="Complete host and location review first"'
+                : ''}
+            >
+              ${(needsHostReview || needsLocationReview)
+                ? 'Complete Review First'
+                : 'Approve & Publish'}
+            </button>
               <button class="btn btn-reject" onclick="rejectEvent('${id}', '${(item.title || "").replace(/'/g, "\\'")}')">Reject</button>
             </div>
           `;
           stagingList.appendChild(card);
-        });
+
+          // Handle creating a new host
+          card.querySelectorAll(".mark-new-host").forEach((button) => {
+            button.addEventListener("click", () => {
+              const hostRow = button.closest(".host-review-row");
+              const input = hostRow.querySelector(".host-match-search");
+              const status = hostRow.querySelector(".host-review-status");
+              const aliasOption = hostRow.querySelector(".host-alias-option");
+
+              // Mark the extracted name as a new host
+              hostRow.dataset.createNewHost = "true";
+
+              // Clear any previously selected existing host
+              delete input.dataset.hostId;
+              input.value = "";
+
+              // Hide alias option (aliases only apply to existing hosts)
+              aliasOption.style.display = "none";
+              hostRow.querySelector(".host-alias-checkbox").checked = false;
+
+              // Update review status
+              status.textContent = `✓ New host: ${hostRow.dataset.extractedName}`;
+              status.style.color = "green";
+
+              updateApproveButton();
+            });
+          });
+          
+          function updateApproveButton() {
+            const approveButton = card.querySelector(".btn-approve");
+            if (!approveButton) return;
+
+            const hostRows = [...card.querySelectorAll(".host-review-row")];
+
+            const hostsReviewed = hostRows.length > 0 && hostRows.every(row => {
+              const input = row.querySelector(".host-match-search");
+
+              // Automatically matched hosts are already reviewed
+              if (!input) return true;
+
+              return Boolean(input.dataset.hostId) ||
+                    row.dataset.createNewHost === "true";
+            });
+
+            const locationRow = card.querySelector(".location-review-row");
+            const locationInput = locationRow?.querySelector(".location-match-search");
+
+            // Automatically matched locations are already reviewed
+            const locationReviewed = Boolean(locationRow) && (
+              !locationInput ||
+              Boolean(locationInput.dataset.locationId) ||
+              locationRow.dataset.createNewLocation === "true"
+            );
+
+            const readyToApprove = hostsReviewed && locationReviewed;
+
+            approveButton.disabled = !readyToApprove;
+            approveButton.textContent = readyToApprove
+              ? "Approve & Publish"
+              : "Complete Review First";
+
+            approveButton.title = readyToApprove
+              ? ""
+              : "Complete host and location review first";
+          }
+
+          // Handle creating a new location
+          card.querySelectorAll(".mark-new-location").forEach((button) => {
+            button.addEventListener("click", () => {
+              const locationRow = button.closest(".location-review-row");
+              const input = locationRow.querySelector(".location-match-search");
+              const status = locationRow.querySelector(".location-review-status");
+
+              // Mark this as a new location
+              locationRow.dataset.createNewLocation = "true";
+
+              // Clear any existing selection
+              delete input.dataset.locationId;
+              input.value = "";
+              locationRow.querySelector(".location-search-results").replaceChildren();
+
+              // Hide the alias option
+              locationRow.querySelector(".location-alias-option").style.display = "none";
+              locationRow.querySelector(".location-alias-checkbox").checked = false;
+
+              // Update review status
+              status.textContent = `✓ New location: ${locationRow.dataset.extractedName}`;
+              status.style.color = "green";
+              locationRow.querySelector(".new-location-fields").style.display = "block";
+              updateApproveButton();
+            });
+          });
+
+          
+          // Connect the search field for unmatched locations
+          const locationInput = card.querySelector(".location-match-search");
+
+          if (locationInput) {
+            const locationRow = locationInput.closest(".location-review-row");
+            const resultsContainer = locationRow.querySelector(".location-search-results");
+
+            async function showLocationResults() {
+              const searchText = locationInput.value.trim();
+              resultsContainer.replaceChildren();
+
+              const matches = await searchLocations(searchText);
+
+              // Ignore results from an earlier search
+              if (locationInput.value.trim() !== searchText) return;
+
+              if (matches.length === 0) {
+                resultsContainer.textContent = "No matching locations found.";
+                return;
+              }
+
+              matches.forEach((location) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = location.name;
+                button.style.display = "block";
+                button.style.width = "100%";
+                button.style.textAlign = "left";
+
+                button.addEventListener("click", () => {
+                  locationInput.value = location.name;
+                  locationInput.dataset.locationId = location.id;
+                  delete locationRow.dataset.createNewLocation;
+                  locationRow.querySelector(".new-location-fields").style.display = "none";
+
+                  resultsContainer.replaceChildren();
+
+                  const aliasOption = locationRow.querySelector(".location-alias-option");
+                  const aliasCheckbox = locationRow.querySelector(".location-alias-checkbox");
+
+                  aliasCheckbox.checked = false;
+                  aliasOption.style.display = "block";
+
+                  const status = locationRow.querySelector(".location-review-status");
+                  status.textContent = `✓ Selected: ${location.name}`;
+                  status.style.color = "green";
+                  updateApproveButton();
+                });
+
+                resultsContainer.appendChild(button);
+              });
+            }
+
+            // Search as you type
+            locationInput.addEventListener("input", () => {
+              delete locationInput.dataset.locationId;
+              delete locationRow.dataset.createNewLocation;
+              locationRow.querySelector(".new-location-fields").style.display = "none";
+
+              locationRow.querySelector(".location-alias-option").style.display = "none";
+              locationRow.querySelector(".location-alias-checkbox").checked = false;
+
+              const status = locationRow.querySelector(".location-review-status");
+              status.textContent = "⚠️ Needs location review";
+              status.style.color = "";
+              updateApproveButton();
+              showLocationResults();
+            });
+
+            // Allow browsing without typing
+            locationInput.addEventListener("focus", showLocationResults);
+          }
+
+          // Close search dropdowns when clicking outside them
+          card.addEventListener("click", (event) => {
+            card.querySelectorAll(
+              ".host-search-results, .location-search-results"
+            ).forEach((results) => {
+              const input = results.parentElement.querySelector(
+                ".host-match-search, .location-match-search"
+              );
+
+              if (
+                input &&
+                event.target !== input &&
+                !results.contains(event.target)
+              ) {
+                results.replaceChildren();
+              }
+            });
+          });
+
+          // Connect the search fields for unmatched hosts
+          const searchInputs = card.querySelectorAll(".host-match-search");
+
+          searchInputs.forEach((input) => {
+            const resultsContainer = input.parentElement.querySelector(".host-search-results");
+
+            async function showHostResults() {
+              const searchText = input.value.trim();
+
+              resultsContainer.replaceChildren();
+
+              const matches = await searchHosts(searchText);
+
+              // Ignore results from an earlier search.
+              if (input.value.trim() !== searchText) return;
+
+              if (matches.length === 0) {
+                resultsContainer.textContent = "No matching hosts found.";
+                return;
+              }
+
+              matches.forEach((host) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = host.name;
+                button.style.display = "block";
+                button.style.width = "100%";
+                button.style.textAlign = "left";
+
+          button.addEventListener("click", () => {
+            input.value = host.name;
+            input.dataset.hostId = host.id;
+            resultsContainer.replaceChildren();
+
+            // Find the host's review row first
+            const hostRow = input.closest(".host-review-row");
+            
+            // Cancel any previous "Create New Host" selection
+            delete hostRow.dataset.createNewHost;
+
+            // Show the optional alias checkbox
+            const aliasOption = hostRow.querySelector(".host-alias-option");
+            const aliasCheckbox = hostRow.querySelector(".host-alias-checkbox");
+
+            aliasCheckbox.checked = false;
+            aliasOption.style.display = "block";
+
+            // Update the review status
+            const status = hostRow.querySelector(".host-review-status");
+
+            if (status) {
+              status.textContent = `✓ Selected: ${host.name}`;
+              status.style.color = "green";
+            }
+
+            updateApproveButton();
+
+          });
+
+                resultsContainer.appendChild(button);
+                updateApproveButton();
+              });
+            }
+
+            input.addEventListener("focus", showHostResults);
+            input.addEventListener("input", () => {
+              delete input.dataset.hostId;
+
+              updateApproveButton();
+
+              const hostRow = input.closest(".host-review-row");
+
+              const aliasOption = hostRow.querySelector(".host-alias-option");
+              const aliasCheckbox = hostRow.querySelector(".host-alias-checkbox");
+              const status = hostRow.querySelector(".host-review-status");
+
+              aliasCheckbox.checked = false;
+              aliasOption.style.display = "none";
+
+              status.textContent = "⚠️ Needs host review";
+              status.style.color = "";
+
+              showHostResults();
+            });
+          });
+        }
       } catch (error) {
         stagingList.innerHTML = `<p style="color:red;">Error loading staging collection: ${error.message}</p>`;
       }
     }
 
     // APPROVE & MOVE EVENT TO LIVE
-    window.approveEvent = async (id) => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "staging_events"));
-        const targetDoc = querySnapshot.docs.find(d => d.id === id);
-        if (!targetDoc) return;
+    
+window.approveEvent = async (id) => {
+  try {
+    const stagingRef = doc(db, "staging_events", id);
+    const stagingSnap = await getDoc(stagingRef);
 
-        const data = targetDoc.data();
-        delete data.is_new_host;
-        delete data.is_new_location;
+    if (!stagingSnap.exists()) {
+      alert("Staged event not found.");
+      return;
+    }
 
-        // Add to live events collection
-        await addDoc(collection(db, "events"), data);
-        // Remove from staging
-        await deleteDoc(doc(db, "staging_events", id));
-        
-        loadStagedEvents();
-      } catch (err) {
-        alert("Error approving event: " + err.message);
+    const data = stagingSnap.data();
+
+    // Find the review card for this event
+    const card = [...document.querySelectorAll(".card")]
+      .find(el => el.dataset.eventId === id);
+
+    if (!card) {
+      alert("Could not find the event review card.");
+      return;
+    }
+
+    const rows = [...card.querySelectorAll(".host-review-row")];
+    const extractedHosts = data.hosts || [];
+
+    if (rows.length !== extractedHosts.length || rows.length === 0) {
+      alert("Host review is incomplete.");
+      return;
+    }
+
+    const batch = writeBatch(db);
+    const approvedHosts = [];
+
+    // Resolve hosts
+    for (let i = 0; i < extractedHosts.length; i++) {
+      const extractedName = extractedHosts[i];
+      const row = rows[i];
+      const input = row.querySelector(".host-match-search");
+
+      const automaticMatch = await findMatchingHost(extractedName);
+
+      if (automaticMatch) {
+        approvedHosts.push({
+          displayName: automaticMatch.name,
+          id: automaticMatch.id
+        });
+        continue;
       }
-    };
+
+      if (input?.dataset.hostId) {
+        const hostId = input.dataset.hostId;
+        const hostRef = doc(db, "hosts", hostId);
+
+        if (row.querySelector(".host-alias-checkbox")?.checked) {
+          batch.update(hostRef, {
+            aliases: arrayUnion(extractedName)
+          });
+        }
+
+        approvedHosts.push({
+          displayName: input.value,
+          id: hostId
+        });
+        continue;
+      }
+
+      if (row.dataset.createNewHost === "true") {
+        const newHostRef = doc(collection(db, "hosts"));
+
+        batch.set(newHostRef, {
+          name: extractedName,
+          aliases: []
+        });
+
+        approvedHosts.push({
+          displayName: input.value,
+          id: newHostRef.id
+        });
+        continue;
+      }
+
+      alert(`Please review host: ${extractedName}`);
+      return;
+    }
+
+    // Resolve location
+    const extractedLocation = data.location || "";
+    const locationRow = card.querySelector(".location-review-row");
+    const locationInput = locationRow?.querySelector(".location-match-search");
+
+    if (!locationRow || !extractedLocation.trim()) {
+      alert("Please review the event location.");
+      return;
+    }
+
+    let approvedLocation;
+
+    const automaticLocation = await findMatchingLocation(extractedLocation);
+
+    if (automaticLocation) {
+      approvedLocation = {
+        id: automaticLocation.id,
+        displayName: extractedLocation,
+        details: ""
+      };
+    } else if (locationInput?.dataset.locationId) {
+      // Existing location selected manually
+      const locationId = locationInput.dataset.locationId;
+      const locationRef = doc(db, "locations", locationId);
+
+      if (locationRow.querySelector(".location-alias-checkbox")?.checked) {
+        batch.update(locationRef, {
+          aliases: arrayUnion(extractedLocation)
+        });
+      }
+
+      approvedLocation = {
+        id: locationId,
+        displayName: locationInput.value,
+        details: ""
+      };
+    } else if (locationRow.dataset.createNewLocation === "true") {
+      // New location
+      const address = locationRow
+        .querySelector(".new-location-address")
+        ?.value.trim() || "";
+
+      const isTBD = /\b(TBD|TBA)\b/i.test(extractedLocation);
+
+      if (!address && !isTBD) {
+        alert(`Please enter an address for: ${extractedLocation}`);
+        return;
+      }
+
+      const newLocationRef = doc(collection(db, "locations"));
+
+      batch.set(newLocationRef, {
+        name: extractedLocation,
+        address,
+        aliases: []
+      });
+
+      approvedLocation = {
+        id: newLocationRef.id,
+        displayName: extractedLocation,
+        details: ""
+      };
+    } else {
+      alert(`Please review location: ${extractedLocation}`);
+      return;
+    }
+
+    // Prepare the approved event
+    delete data.is_new_host;
+    delete data.is_new_location;
+
+    data.hosts = approvedHosts;
+    data.location = approvedLocation;
+
+    // Publish event and remove staging document together
+    const eventRef = doc(collection(db, "events"));
+
+    batch.set(eventRef, data);
+    batch.delete(stagingRef);
+
+    await batch.commit();
+
+    alert("Event approved successfully!");
+    loadStagedEvents();
+
+  } catch (err) {
+    alert("Error approving event: " + err.message);
+    console.error(err);
+  }
+};
+
+
 
     // REJECT & LOG FEEDBACK
     window.rejectEvent = async (id, title) => {
