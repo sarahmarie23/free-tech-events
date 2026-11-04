@@ -1,11 +1,13 @@
+import PostalMime from "postal-mime";
 
 export default {
   async email(message, env, ctx) {
     const subject = message.headers.get("subject") || "";
-    const rawEmail = await new Response(message.raw).text();
+    const rawEmail = await PostalMime.parse(message.raw);
+    const emailBody = rawEmail.text || rawEmail.html || "";
 
     // First-pass spam and relevance screening
-    function screenEmail(subject, rawEmail) {
+    function screenEmail(subject, emailBody) {
       const subjectText = subject.toLowerCase();
       const bodyText = rawEmail.toLowerCase();
 
